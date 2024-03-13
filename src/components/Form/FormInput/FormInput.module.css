@@ -1,0 +1,14 @@
+.form-input {
+    display: flex;
+    gap: 8px;
+
+    input {
+        &[data-is-valid="true"] {
+            background-color: limegreen;
+        }
+
+        &[data-is-valid="false"] {
+            background-color: pink;
+        }
+    }
+}

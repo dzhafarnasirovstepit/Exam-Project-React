@@ -1,0 +1,13 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &--valid {
+        background-color: green;
+    }
+
+    &--invalid {
+        background-color: red;
+    }
+}
