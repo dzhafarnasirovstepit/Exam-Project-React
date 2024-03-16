@@ -1,8 +1,8 @@
 import { ActionFunctionArgs, redirect } from "react-router-dom";
-import { deleteContact } from "../contacts";
+import { deleteTask } from "../tasks";
 
 export async function action({ params }: ActionFunctionArgs) {
-  await deleteContact(params.contactId);
+  await deleteTask(params.taskId);
   
   return redirect("/");
 }

@@ -1,12 +1,12 @@
-type ContactType = {
+type TaskType = {
 	id?: string,
 	createdAt?: number,
 	first?: string,
 	last?: string,
 	avatar?: string,
 	twitter?: string,
-	notes?: string,
+	description?: string,
 	favorite?: boolean,
 }
 
-export default ContactType;
+export default TaskType;

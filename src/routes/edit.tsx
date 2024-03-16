@@ -1,69 +1,45 @@
 import { Form, useLoaderData, redirect, ActionFunctionArgs, useNavigate, } from "react-router-dom";
-import ContactType from "src/types/Contact";
+import TaskType from "src/types/Task";
 
-import { updateContact } from "../contacts";
+import { updateTask } from "../tasks";
 
 export async function action({ request, params }: ActionFunctionArgs) {
 	const formData = await request.formData();
-	const firstName = formData.get("first");
-	const lastName = formData.get("last");
+/* 	const firstName = formData.get("first");
+	const lastName = formData.get("last"); */
 	const updates = Object.fromEntries(formData);
 
 	updates.first;
 	updates.last;
 
-	await updateContact(params.contactId, updates);
+	await updateTask(params.taskId, updates);
 
-	return redirect(`/contacts/${params.contactId}`);
+	return redirect(`/tasks/${params.taskId}`);
 }
 
-const EditContact = () => {
-	const { contact } = useLoaderData() as { contact: ContactType };
+const EditTask = () => {
+	const { task } = useLoaderData() as { task: TaskType };
 	const navigate = useNavigate();
 
 	return (
-		<Form method="post" id="contact-form">
+		<Form method="post" id="task-form">
 			<p>
-				<span>Name</span>
+				<span>Task Name</span>
 				<input
-					placeholder="First"
-					aria-label="First name"
+					placeholder="Enter task name..."
+					aria-label="Task name"
 					type="text"
 					name="first"
-					defaultValue={contact.first}
-				/>
-				<input
-					placeholder="Last"
-					aria-label="Last name"
-					type="text"
-					name="last"
-					defaultValue={contact.last}
+					defaultValue={task.first}
 				/>
 			</p>
+
 			<label>
-				<span>Twitter</span>
-				<input
-					type="text"
-					name="twitter"
-					placeholder="@jack"
-					defaultValue={contact.twitter}
-				/>
-			</label>
-			<label>
-				<span>Avatar URL</span>
-				<input
-					placeholder="https://example.com/avatar.jpg"
-					aria-label="Avatar URL"
-					type="text"
-					name="avatar"
-					defaultValue={contact.avatar}
-				/>
-			</label>
-			<label>
-				<span>Notes</span>
+				<span>Description</span>
 				<textarea
-					name="notes"
-					defaultValue={contact.notes}
+				placeholder="Describe your task..."
+					name="description"
+					defaultValue={task.description}
 					rows={6}
 				/>
 			</label>
@@ -80,4 +56,4 @@ const EditContact = () => {
 	);
 }
 
-export default EditContact;
+export default EditTask;

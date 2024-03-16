@@ -4352,20 +4352,434 @@ function persistAppliedTransitions(_window, transitions) {
 
 /***/ }),
 
-/***/ "./src/contacts.ts":
-/*!*************************!*\
-  !*** ./src/contacts.ts ***!
-  \*************************/
+/***/ "./src/error-page.tsx":
+/*!****************************!*\
+  !*** ./src/error-page.tsx ***!
+  \****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var ErrorPage = function ErrorPage() {
+  var error = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_0__.useRouteError)();
+  console.error(error);
+  return /*#__PURE__*/React.createElement("div", {
+    id: "error-page"
+  }, /*#__PURE__*/React.createElement("h1", null, "Oops!"), /*#__PURE__*/React.createElement("p", null, "Sorry, an unexpected error has occurred."), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("i", null, error.statusText || error.message)));
+};
+/* harmony default export */ __webpack_exports__["default"] = (ErrorPage);
+
+/***/ }),
+
+/***/ "./src/routes/destroy.tsx":
+/*!********************************!*\
+  !*** ./src/routes/destroy.tsx ***!
+  \********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   createContact: function() { return /* binding */ createContact; },
-/* harmony export */   deleteContact: function() { return /* binding */ deleteContact; },
-/* harmony export */   getContact: function() { return /* binding */ getContact; },
-/* harmony export */   getContacts: function() { return /* binding */ getContacts; },
-/* harmony export */   updateContact: function() { return /* binding */ updateContact; }
+/* harmony export */   action: function() { return /* binding */ action; }
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/@remix-run/router/dist/router.js");
+/* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tasks */ "./src/tasks.ts");
+
+
+
+
+function action(_x) {
+  return _action.apply(this, arguments);
+}
+function _action() {
+  _action = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(_ref) {
+    var params;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          params = _ref.params;
+          _context.next = 3;
+          return (0,_tasks__WEBPACK_IMPORTED_MODULE_2__.deleteTask)(params.taskId);
+        case 3:
+          return _context.abrupt("return", (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.redirect)("/"));
+        case 4:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee);
+  }));
+  return _action.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./src/routes/edit.tsx":
+/*!*****************************!*\
+  !*** ./src/routes/edit.tsx ***!
+  \*****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   action: function() { return /* binding */ action; }
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/@remix-run/router/dist/router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tasks */ "./src/tasks.ts");
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+
+
+function action(_x) {
+  return _action.apply(this, arguments);
+}
+function _action() {
+  _action = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(_ref) {
+    var request, params, formData, updates;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          request = _ref.request, params = _ref.params;
+          _context.next = 3;
+          return request.formData();
+        case 3:
+          formData = _context.sent;
+          /* 	const firstName = formData.get("first");
+          	const lastName = formData.get("last"); */
+          updates = Object.fromEntries(formData);
+          updates.first;
+          updates.last;
+          _context.next = 9;
+          return (0,_tasks__WEBPACK_IMPORTED_MODULE_2__.updateTask)(params.taskId, updates);
+        case 9:
+          return _context.abrupt("return", (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.redirect)("/tasks/".concat(params.taskId)));
+        case 10:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee);
+  }));
+  return _action.apply(this, arguments);
+}
+var EditTask = function EditTask() {
+  var _ref2 = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useLoaderData)(),
+    task = _ref2.task;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
+  return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Form, {
+    method: "post",
+    id: "task-form"
+  }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("span", null, "Task Name"), /*#__PURE__*/React.createElement("input", {
+    placeholder: "Enter task name...",
+    "aria-label": "Task name",
+    type: "text",
+    name: "first",
+    defaultValue: task.first
+  })), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", null, "Description"), /*#__PURE__*/React.createElement("textarea", {
+    placeholder: "Describe your task...",
+    name: "description",
+    defaultValue: task.description,
+    rows: 6
+  })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, "Save"), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    onClick: function onClick() {
+      navigate(-1);
+    }
+  }, "Cancel")));
+};
+/* harmony default export */ __webpack_exports__["default"] = (EditTask);
+
+/***/ }),
+
+/***/ "./src/routes/root.tsx":
+/*!*****************************!*\
+  !*** ./src/routes/root.tsx ***!
+  \*****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   action: function() { return /* binding */ action; },
+/* harmony export */   loader: function() { return /* binding */ loader; }
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/@remix-run/router/dist/router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tasks */ "./src/tasks.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+
+
+
+function action() {
+  return _action.apply(this, arguments);
+}
+function _action() {
+  _action = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+    var task;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          _context.next = 2;
+          return (0,_tasks__WEBPACK_IMPORTED_MODULE_2__.createTask)();
+        case 2:
+          task = _context.sent;
+          return _context.abrupt("return", (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.redirect)("/tasks/".concat(task.id, "/edit")));
+        case 4:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee);
+  }));
+  return _action.apply(this, arguments);
+}
+function loader(_x) {
+  return _loader.apply(this, arguments);
+}
+function _loader() {
+  _loader = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(_ref) {
+    var request, url, q, tasks;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          request = _ref.request;
+          url = new URL(request.url);
+          q = url.searchParams.get("q");
+          _context2.next = 5;
+          return (0,_tasks__WEBPACK_IMPORTED_MODULE_2__.getTasks)(q);
+        case 5:
+          tasks = _context2.sent;
+          return _context2.abrupt("return", {
+            tasks: tasks,
+            q: q
+          });
+        case 7:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return _loader.apply(this, arguments);
+}
+var Root = function Root() {
+  var _ref2 = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useLoaderData)(),
+    tasks = _ref2.tasks,
+    q = _ref2.q;
+  var navigation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigation)();
+  var submit = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useSubmit)();
+  var searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
+  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
+    document.getElementById("q").value = q;
+  }, [q]);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    id: "sidebar"
+  }, /*#__PURE__*/React.createElement("h1", null, "React Router Tasks"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Form, {
+    id: "search-form",
+    role: "search"
+  }, /*#__PURE__*/React.createElement("input", {
+    id: "q",
+    className: searching ? "loading" : "",
+    "aria-label": "Search tasks",
+    placeholder: "Search",
+    type: "search",
+    name: "q",
+    defaultValue: q,
+    onChange: function onChange(event) {
+      var isFirstSearch = q == null;
+      submit(event.currentTarget.form, {
+        replace: !isFirstSearch
+      });
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    id: "search-spinner",
+    "aria-hidden": true,
+    hidden: !searching
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "sr-only",
+    "aria-live": "polite"
+  })), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Form, {
+    method: "post"
+  }, /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, "New"))), /*#__PURE__*/React.createElement("nav", null, tasks.length ? /*#__PURE__*/React.createElement("ul", null, tasks.map(function (task) {
+    return /*#__PURE__*/React.createElement("li", {
+      key: task.id
+    }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.NavLink, {
+      to: "tasks/".concat(task.id),
+      className: function className(_ref3) {
+        var isActive = _ref3.isActive,
+          isPending = _ref3.isPending;
+        return isActive ? "active" : isPending ? "pending" : "";
+      }
+    }, task.first || task.last ? /*#__PURE__*/React.createElement(React.Fragment, null, task.first, " ", task.last) : /*#__PURE__*/React.createElement("i", null, "No Name"), " ", task.favorite && /*#__PURE__*/React.createElement("span", null, "\u2605")));
+  })) : /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("i", null, "No tasks")))), /*#__PURE__*/React.createElement("div", {
+    id: "detail",
+    className: navigation.state === "loading" ? "loading" : ""
+  }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Outlet, null)));
+};
+/* harmony default export */ __webpack_exports__["default"] = (Root);
+
+/***/ }),
+
+/***/ "./src/routes/task.tsx":
+/*!*****************************!*\
+  !*** ./src/routes/task.tsx ***!
+  \*****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   action: function() { return /* binding */ action; },
+/* harmony export */   loader: function() { return /* binding */ loader; }
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tasks */ "./src/tasks.ts");
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+
+
+function action(_x) {
+  return _action.apply(this, arguments);
+}
+function _action() {
+  _action = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(_ref) {
+    var request, params, formData;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          request = _ref.request, params = _ref.params;
+          _context.next = 3;
+          return request.formData();
+        case 3:
+          formData = _context.sent;
+          return _context.abrupt("return", (0,_tasks__WEBPACK_IMPORTED_MODULE_2__.updateTask)(params.taskId, {
+            favorite: formData.get("favorite") === "true"
+          }));
+        case 5:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee);
+  }));
+  return _action.apply(this, arguments);
+}
+function loader(_x2) {
+  return _loader.apply(this, arguments);
+}
+function _loader() {
+  _loader = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(_ref2) {
+    var params, task;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          params = _ref2.params;
+          _context2.next = 3;
+          return (0,_tasks__WEBPACK_IMPORTED_MODULE_2__.getTask)(params.taskId);
+        case 3:
+          task = _context2.sent;
+          if (task) {
+            _context2.next = 6;
+            break;
+          }
+          throw new Response("", {
+            status: 404,
+            statusText: "Not Found"
+          });
+        case 6:
+          return _context2.abrupt("return", {
+            task: task
+          });
+        case 7:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return _loader.apply(this, arguments);
+}
+var Task = function Task() {
+  var _ref3 = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLoaderData)(),
+    task = _ref3.task;
+  return /*#__PURE__*/React.createElement("div", {
+    id: "task"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, task !== null && task !== void 0 && task.first || task !== null && task !== void 0 && task.last ? /*#__PURE__*/React.createElement(React.Fragment, null, task === null || task === void 0 ? void 0 : task.first, " ", task === null || task === void 0 ? void 0 : task.last) : /*#__PURE__*/React.createElement("i", null, "No Name"), " ", /*#__PURE__*/React.createElement(Favorite, {
+    task: task
+  })), (task === null || task === void 0 ? void 0 : task.description) && /*#__PURE__*/React.createElement("p", null, task === null || task === void 0 ? void 0 : task.description), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Form, {
+    action: "edit"
+  }, /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, "Edit")), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Form, {
+    method: "post",
+    action: "destroy",
+    onSubmit: function onSubmit(event) {
+      if (!window.confirm("Please confirm you want to delete this record.")) {
+        event.preventDefault();
+      }
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, "Delete")))));
+};
+/* harmony default export */ __webpack_exports__["default"] = (Task);
+var Favorite = function Favorite(_ref4) {
+  var task = _ref4.task;
+  var fetcher = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useFetcher)();
+  // yes, this is a `let` for later
+  var favorite = task === null || task === void 0 ? void 0 : task.favorite;
+  if (fetcher.formData) {
+    favorite = fetcher.formData.get("favorite") === "true";
+  }
+  return /*#__PURE__*/React.createElement(fetcher.Form, {
+    method: "post"
+  }, /*#__PURE__*/React.createElement("button", {
+    name: "favorite",
+    value: favorite ? "false" : "true",
+    "aria-label": favorite ? "Remove from favorites" : "Add to favorites"
+  }, favorite ? "★" : "☆"));
+};
+
+/***/ }),
+
+/***/ "./src/tasks.ts":
+/*!**********************!*\
+  !*** ./src/tasks.ts ***!
+  \**********************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createTask: function() { return /* binding */ createTask; },
+/* harmony export */   deleteTask: function() { return /* binding */ deleteTask; },
+/* harmony export */   getTask: function() { return /* binding */ getTask; },
+/* harmony export */   getTasks: function() { return /* binding */ getTasks; },
+/* harmony export */   updateTask: function() { return /* binding */ updateTask; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -4380,43 +4794,43 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function getContacts(_x) {
-  return _getContacts.apply(this, arguments);
+function getTasks(_x) {
+  return _getTasks.apply(this, arguments);
 }
-function _getContacts() {
-  _getContacts = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(query) {
-    var contacts;
+function _getTasks() {
+  _getTasks = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(query) {
+    var tasks;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return fakeNetwork("getContacts:".concat(query));
+          return fakeNetwork("getTasks:".concat(query));
         case 2:
           _context.next = 4;
-          return localforage__WEBPACK_IMPORTED_MODULE_2___default().getItem("contacts");
+          return localforage__WEBPACK_IMPORTED_MODULE_2___default().getItem("tasks");
         case 4:
-          contacts = _context.sent;
-          if (!contacts) contacts = [];
+          tasks = _context.sent;
+          if (!tasks) tasks = [];
           if (query) {
-            contacts = (0,match_sorter__WEBPACK_IMPORTED_MODULE_3__.matchSorter)(contacts, query, {
+            tasks = (0,match_sorter__WEBPACK_IMPORTED_MODULE_3__.matchSorter)(tasks, query, {
               keys: ["first", "last"]
             });
           }
-          return _context.abrupt("return", contacts.sort(sort_by__WEBPACK_IMPORTED_MODULE_4___default()("last", "createdAt")));
+          return _context.abrupt("return", tasks.sort(sort_by__WEBPACK_IMPORTED_MODULE_4___default()("last", "createdAt")));
         case 8:
         case "end":
           return _context.stop();
       }
     }, _callee);
   }));
-  return _getContacts.apply(this, arguments);
+  return _getTasks.apply(this, arguments);
 }
-function createContact() {
-  return _createContact.apply(this, arguments);
+function createTask() {
+  return _createTask.apply(this, arguments);
 }
-function _createContact() {
-  _createContact = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
-    var id, contact, contacts;
+function _createTask() {
+  _createTask = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
+    var id, task, tasks;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
@@ -4424,42 +4838,42 @@ function _createContact() {
           return fakeNetwork();
         case 2:
           id = Math.random().toString(36).substring(2, 9);
-          contact = {
+          task = {
             id: id,
             createdAt: Date.now()
           };
           _context2.next = 6;
-          return getContacts();
+          return getTasks();
         case 6:
-          contacts = _context2.sent;
-          contacts.unshift(contact);
+          tasks = _context2.sent;
+          tasks.unshift(task);
           _context2.next = 10;
-          return set(contacts);
+          return set(tasks);
         case 10:
-          return _context2.abrupt("return", contact);
+          return _context2.abrupt("return", task);
         case 11:
         case "end":
           return _context2.stop();
       }
     }, _callee2);
   }));
-  return _createContact.apply(this, arguments);
+  return _createTask.apply(this, arguments);
 }
-function getContact(_x2) {
-  return _getContact.apply(this, arguments);
+function getTask(_x2) {
+  return _getTask.apply(this, arguments);
 }
-function _getContact() {
-  _getContact = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(id) {
+function _getTask() {
+  _getTask = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(id) {
     var _yield$localforage$ge;
-    var contacts, contact;
+    var tasks, task;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
           _context3.next = 2;
-          return fakeNetwork("contact:".concat(id));
+          return fakeNetwork("task:".concat(id));
         case 2:
           _context3.next = 4;
-          return localforage__WEBPACK_IMPORTED_MODULE_2___default().getItem("contacts");
+          return localforage__WEBPACK_IMPORTED_MODULE_2___default().getItem("tasks");
         case 4:
           _context3.t1 = _yield$localforage$ge = _context3.sent;
           _context3.t0 = _context3.t1 !== null;
@@ -4479,26 +4893,26 @@ function _getContact() {
         case 12:
           _context3.t2 = [];
         case 13:
-          contacts = _context3.t2;
-          contact = contacts.find(function (contact) {
-            return contact.id === id;
+          tasks = _context3.t2;
+          task = tasks.find(function (task) {
+            return task.id === id;
           });
-          return _context3.abrupt("return", contact !== null && contact !== void 0 ? contact : null);
+          return _context3.abrupt("return", task !== null && task !== void 0 ? task : null);
         case 16:
         case "end":
           return _context3.stop();
       }
     }, _callee3);
   }));
-  return _getContact.apply(this, arguments);
+  return _getTask.apply(this, arguments);
 }
-function updateContact(_x3, _x4) {
-  return _updateContact.apply(this, arguments);
+function updateTask(_x3, _x4) {
+  return _updateTask.apply(this, arguments);
 }
-function _updateContact() {
-  _updateContact = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee4(id, updates) {
+function _updateTask() {
+  _updateTask = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee4(id, updates) {
     var _yield$localforage$ge2;
-    var contacts, contact;
+    var tasks, task;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
@@ -4506,7 +4920,7 @@ function _updateContact() {
           return fakeNetwork();
         case 2:
           _context4.next = 4;
-          return localforage__WEBPACK_IMPORTED_MODULE_2___default().getItem("contacts");
+          return localforage__WEBPACK_IMPORTED_MODULE_2___default().getItem("tasks");
         case 4:
           _context4.t1 = _yield$localforage$ge2 = _context4.sent;
           _context4.t0 = _context4.t1 !== null;
@@ -4526,43 +4940,43 @@ function _updateContact() {
         case 12:
           _context4.t2 = [];
         case 13:
-          contacts = _context4.t2;
-          contact = contacts.find(function (contact) {
-            return contact.id === id;
+          tasks = _context4.t2;
+          task = tasks.find(function (task) {
+            return task.id === id;
           });
-          if (contact) {
+          if (task) {
             _context4.next = 17;
             break;
           }
-          throw new Error("No contact found for", {
+          throw new Error("No task found for", {
             cause: id
           });
         case 17:
-          Object.assign(contact, updates);
+          Object.assign(task, updates);
           _context4.next = 20;
-          return set(contacts);
+          return set(tasks);
         case 20:
-          return _context4.abrupt("return", contact);
+          return _context4.abrupt("return", task);
         case 21:
         case "end":
           return _context4.stop();
       }
     }, _callee4);
   }));
-  return _updateContact.apply(this, arguments);
+  return _updateTask.apply(this, arguments);
 }
-function deleteContact(_x5) {
-  return _deleteContact.apply(this, arguments);
+function deleteTask(_x5) {
+  return _deleteTask.apply(this, arguments);
 }
-function _deleteContact() {
-  _deleteContact = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee5(id) {
+function _deleteTask() {
+  _deleteTask = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee5(id) {
     var _yield$localforage$ge3;
-    var contacts, index;
+    var tasks, index;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee5$(_context5) {
       while (1) switch (_context5.prev = _context5.next) {
         case 0:
           _context5.next = 2;
-          return localforage__WEBPACK_IMPORTED_MODULE_2___default().getItem("contacts");
+          return localforage__WEBPACK_IMPORTED_MODULE_2___default().getItem("tasks");
         case 2:
           _context5.t1 = _yield$localforage$ge3 = _context5.sent;
           _context5.t0 = _context5.t1 !== null;
@@ -4582,17 +4996,17 @@ function _deleteContact() {
         case 10:
           _context5.t2 = [];
         case 11:
-          contacts = _context5.t2;
-          index = contacts.findIndex(function (contact) {
-            return contact.id === id;
+          tasks = _context5.t2;
+          index = tasks.findIndex(function (task) {
+            return task.id === id;
           });
           if (!(index > -1)) {
             _context5.next = 18;
             break;
           }
-          contacts.splice(index, 1);
+          tasks.splice(index, 1);
           _context5.next = 17;
-          return set(contacts);
+          return set(tasks);
         case 17:
           return _context5.abrupt("return", true);
         case 18:
@@ -4603,10 +5017,10 @@ function _deleteContact() {
       }
     }, _callee5);
   }));
-  return _deleteContact.apply(this, arguments);
+  return _deleteTask.apply(this, arguments);
 }
-function set(contacts) {
-  return localforage__WEBPACK_IMPORTED_MODULE_2___default().setItem("contacts", contacts);
+function set(tasks) {
+  return localforage__WEBPACK_IMPORTED_MODULE_2___default().setItem("tasks", tasks);
 }
 
 // fake a cache so we don't slow down stuff we've already seen
@@ -4647,442 +5061,6 @@ function _fakeNetwork() {
 
 /***/ }),
 
-/***/ "./src/error-page.tsx":
-/*!****************************!*\
-  !*** ./src/error-page.tsx ***!
-  \****************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var ErrorPage = function ErrorPage() {
-  var error = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_0__.useRouteError)();
-  console.error(error);
-  return /*#__PURE__*/React.createElement("div", {
-    id: "error-page"
-  }, /*#__PURE__*/React.createElement("h1", null, "Oops!"), /*#__PURE__*/React.createElement("p", null, "Sorry, an unexpected error has occurred."), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("i", null, error.statusText || error.message)));
-};
-/* harmony default export */ __webpack_exports__["default"] = (ErrorPage);
-
-/***/ }),
-
-/***/ "./src/routes/contact.tsx":
-/*!********************************!*\
-  !*** ./src/routes/contact.tsx ***!
-  \********************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   action: function() { return /* binding */ action; },
-/* harmony export */   loader: function() { return /* binding */ loader; }
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _contacts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../contacts */ "./src/contacts.ts");
-/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-
-
-function action(_x) {
-  return _action.apply(this, arguments);
-}
-function _action() {
-  _action = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(_ref) {
-    var request, params, formData;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
-        case 0:
-          request = _ref.request, params = _ref.params;
-          _context.next = 3;
-          return request.formData();
-        case 3:
-          formData = _context.sent;
-          return _context.abrupt("return", (0,_contacts__WEBPACK_IMPORTED_MODULE_2__.updateContact)(params.contactId, {
-            favorite: formData.get("favorite") === "true"
-          }));
-        case 5:
-        case "end":
-          return _context.stop();
-      }
-    }, _callee);
-  }));
-  return _action.apply(this, arguments);
-}
-function loader(_x2) {
-  return _loader.apply(this, arguments);
-}
-function _loader() {
-  _loader = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(_ref2) {
-    var params, contact;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
-        case 0:
-          params = _ref2.params;
-          _context2.next = 3;
-          return (0,_contacts__WEBPACK_IMPORTED_MODULE_2__.getContact)(params.contactId);
-        case 3:
-          contact = _context2.sent;
-          if (contact) {
-            _context2.next = 6;
-            break;
-          }
-          throw new Response("", {
-            status: 404,
-            statusText: "Not Found"
-          });
-        case 6:
-          return _context2.abrupt("return", {
-            contact: contact
-          });
-        case 7:
-        case "end":
-          return _context2.stop();
-      }
-    }, _callee2);
-  }));
-  return _loader.apply(this, arguments);
-}
-var Contact = function Contact() {
-  var _ref3 = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLoaderData)(),
-    contact = _ref3.contact;
-  return /*#__PURE__*/React.createElement("div", {
-    id: "contact"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("img", {
-    key: contact === null || contact === void 0 ? void 0 : contact.avatar,
-    src: contact === null || contact === void 0 ? void 0 : contact.avatar
-  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, contact !== null && contact !== void 0 && contact.first || contact !== null && contact !== void 0 && contact.last ? /*#__PURE__*/React.createElement(React.Fragment, null, contact === null || contact === void 0 ? void 0 : contact.first, " ", contact === null || contact === void 0 ? void 0 : contact.last) : /*#__PURE__*/React.createElement("i", null, "No Name"), " ", /*#__PURE__*/React.createElement(Favorite, {
-    contact: contact
-  })), (contact === null || contact === void 0 ? void 0 : contact.twitter) && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("a", {
-    target: "_blank",
-    href: "https://twitter.com/".concat(contact === null || contact === void 0 ? void 0 : contact.twitter)
-  }, contact === null || contact === void 0 ? void 0 : contact.twitter)), (contact === null || contact === void 0 ? void 0 : contact.notes) && /*#__PURE__*/React.createElement("p", null, contact === null || contact === void 0 ? void 0 : contact.notes), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Form, {
-    action: "edit"
-  }, /*#__PURE__*/React.createElement("button", {
-    type: "submit"
-  }, "Edit")), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Form, {
-    method: "post",
-    action: "destroy",
-    onSubmit: function onSubmit(event) {
-      if (!window.confirm("Please confirm you want to delete this record.")) {
-        event.preventDefault();
-      }
-    }
-  }, /*#__PURE__*/React.createElement("button", {
-    type: "submit"
-  }, "Delete")))));
-};
-/* harmony default export */ __webpack_exports__["default"] = (Contact);
-var Favorite = function Favorite(_ref4) {
-  var contact = _ref4.contact;
-  var fetcher = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useFetcher)();
-  // yes, this is a `let` for later
-  var favorite = contact === null || contact === void 0 ? void 0 : contact.favorite;
-  if (fetcher.formData) {
-    favorite = fetcher.formData.get("favorite") === "true";
-  }
-  return /*#__PURE__*/React.createElement(fetcher.Form, {
-    method: "post"
-  }, /*#__PURE__*/React.createElement("button", {
-    name: "favorite",
-    value: favorite ? "false" : "true",
-    "aria-label": favorite ? "Remove from favorites" : "Add to favorites"
-  }, favorite ? "★" : "☆"));
-};
-
-/***/ }),
-
-/***/ "./src/routes/destroy.tsx":
-/*!********************************!*\
-  !*** ./src/routes/destroy.tsx ***!
-  \********************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   action: function() { return /* binding */ action; }
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/@remix-run/router/dist/router.js");
-/* harmony import */ var _contacts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../contacts */ "./src/contacts.ts");
-
-
-
-
-function action(_x) {
-  return _action.apply(this, arguments);
-}
-function _action() {
-  _action = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(_ref) {
-    var params;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
-        case 0:
-          params = _ref.params;
-          _context.next = 3;
-          return (0,_contacts__WEBPACK_IMPORTED_MODULE_2__.deleteContact)(params.contactId);
-        case 3:
-          return _context.abrupt("return", (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.redirect)("/"));
-        case 4:
-        case "end":
-          return _context.stop();
-      }
-    }, _callee);
-  }));
-  return _action.apply(this, arguments);
-}
-
-/***/ }),
-
-/***/ "./src/routes/edit.tsx":
-/*!*****************************!*\
-  !*** ./src/routes/edit.tsx ***!
-  \*****************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   action: function() { return /* binding */ action; }
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/@remix-run/router/dist/router.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _contacts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../contacts */ "./src/contacts.ts");
-/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-
-
-function action(_x) {
-  return _action.apply(this, arguments);
-}
-function _action() {
-  _action = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(_ref) {
-    var request, params, formData, firstName, lastName, updates;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
-        case 0:
-          request = _ref.request, params = _ref.params;
-          _context.next = 3;
-          return request.formData();
-        case 3:
-          formData = _context.sent;
-          firstName = formData.get("first");
-          lastName = formData.get("last");
-          updates = Object.fromEntries(formData);
-          updates.first;
-          updates.last;
-          _context.next = 11;
-          return (0,_contacts__WEBPACK_IMPORTED_MODULE_2__.updateContact)(params.contactId, updates);
-        case 11:
-          return _context.abrupt("return", (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.redirect)("/contacts/".concat(params.contactId)));
-        case 12:
-        case "end":
-          return _context.stop();
-      }
-    }, _callee);
-  }));
-  return _action.apply(this, arguments);
-}
-var EditContact = function EditContact() {
-  var _ref2 = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useLoaderData)(),
-    contact = _ref2.contact;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
-  return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Form, {
-    method: "post",
-    id: "contact-form"
-  }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("span", null, "Name"), /*#__PURE__*/React.createElement("input", {
-    placeholder: "First",
-    "aria-label": "First name",
-    type: "text",
-    name: "first",
-    defaultValue: contact.first
-  }), /*#__PURE__*/React.createElement("input", {
-    placeholder: "Last",
-    "aria-label": "Last name",
-    type: "text",
-    name: "last",
-    defaultValue: contact.last
-  })), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", null, "Twitter"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "twitter",
-    placeholder: "@jack",
-    defaultValue: contact.twitter
-  })), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", null, "Avatar URL"), /*#__PURE__*/React.createElement("input", {
-    placeholder: "https://example.com/avatar.jpg",
-    "aria-label": "Avatar URL",
-    type: "text",
-    name: "avatar",
-    defaultValue: contact.avatar
-  })), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", null, "Notes"), /*#__PURE__*/React.createElement("textarea", {
-    name: "notes",
-    defaultValue: contact.notes,
-    rows: 6
-  })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", {
-    type: "submit"
-  }, "Save"), /*#__PURE__*/React.createElement("button", {
-    type: "button",
-    onClick: function onClick() {
-      navigate(-1);
-    }
-  }, "Cancel")));
-};
-/* harmony default export */ __webpack_exports__["default"] = (EditContact);
-
-/***/ }),
-
-/***/ "./src/routes/root.tsx":
-/*!*****************************!*\
-  !*** ./src/routes/root.tsx ***!
-  \*****************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   action: function() { return /* binding */ action; },
-/* harmony export */   loader: function() { return /* binding */ loader; }
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/@remix-run/router/dist/router.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _contacts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../contacts */ "./src/contacts.ts");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-
-
-
-function action() {
-  return _action.apply(this, arguments);
-}
-function _action() {
-  _action = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-    var contact;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
-        case 0:
-          _context.next = 2;
-          return (0,_contacts__WEBPACK_IMPORTED_MODULE_2__.createContact)();
-        case 2:
-          contact = _context.sent;
-          return _context.abrupt("return", (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.redirect)("/contacts/".concat(contact.id, "/edit")));
-        case 4:
-        case "end":
-          return _context.stop();
-      }
-    }, _callee);
-  }));
-  return _action.apply(this, arguments);
-}
-function loader(_x) {
-  return _loader.apply(this, arguments);
-}
-function _loader() {
-  _loader = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(_ref) {
-    var request, url, q, contacts;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
-        case 0:
-          request = _ref.request;
-          url = new URL(request.url);
-          q = url.searchParams.get("q");
-          _context2.next = 5;
-          return (0,_contacts__WEBPACK_IMPORTED_MODULE_2__.getContacts)(q);
-        case 5:
-          contacts = _context2.sent;
-          return _context2.abrupt("return", {
-            contacts: contacts,
-            q: q
-          });
-        case 7:
-        case "end":
-          return _context2.stop();
-      }
-    }, _callee2);
-  }));
-  return _loader.apply(this, arguments);
-}
-var Root = function Root() {
-  var _ref2 = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useLoaderData)(),
-    contacts = _ref2.contacts,
-    q = _ref2.q;
-  var navigation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigation)();
-  var submit = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useSubmit)();
-  var searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
-  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    document.getElementById("q").value = q;
-  }, [q]);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    id: "sidebar"
-  }, /*#__PURE__*/React.createElement("h1", null, "React Router Contacts"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Form, {
-    id: "search-form",
-    role: "search"
-  }, /*#__PURE__*/React.createElement("input", {
-    id: "q",
-    className: searching ? "loading" : "",
-    "aria-label": "Search contacts",
-    placeholder: "Search",
-    type: "search",
-    name: "q",
-    defaultValue: q,
-    onChange: function onChange(event) {
-      var isFirstSearch = q == null;
-      submit(event.currentTarget.form, {
-        replace: !isFirstSearch
-      });
-    }
-  }), /*#__PURE__*/React.createElement("div", {
-    id: "search-spinner",
-    "aria-hidden": true,
-    hidden: !searching
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "sr-only",
-    "aria-live": "polite"
-  })), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Form, {
-    method: "post"
-  }, /*#__PURE__*/React.createElement("button", {
-    type: "submit"
-  }, "New"))), /*#__PURE__*/React.createElement("nav", null, contacts.length ? /*#__PURE__*/React.createElement("ul", null, contacts.map(function (contact) {
-    return /*#__PURE__*/React.createElement("li", {
-      key: contact.id
-    }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.NavLink, {
-      to: "contacts/".concat(contact.id),
-      className: function className(_ref3) {
-        var isActive = _ref3.isActive,
-          isPending = _ref3.isPending;
-        return isActive ? "active" : isPending ? "pending" : "";
-      }
-    }, contact.first || contact.last ? /*#__PURE__*/React.createElement(React.Fragment, null, contact.first, " ", contact.last) : /*#__PURE__*/React.createElement("i", null, "No Name"), " ", contact.favorite && /*#__PURE__*/React.createElement("span", null, "\u2605")));
-  })) : /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("i", null, "No contacts")))), /*#__PURE__*/React.createElement("div", {
-    id: "detail",
-    className: navigation.state === "loading" ? "loading" : ""
-  }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Outlet, null)));
-};
-/* harmony default export */ __webpack_exports__["default"] = (Root);
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/index.css":
 /*!**********************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/index.css ***!
@@ -5111,7 +5089,7 @@ var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_css_loader_dist_runtime_g
 var ___CSS_LOADER_URL_REPLACEMENT_2___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_2___);
 var ___CSS_LOADER_URL_REPLACEMENT_3___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_3___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html {\n  box-sizing: border-box;\n}\n\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace;\n}\n\nhtml,\nbody {\n  height: 100%;\n  margin: 0;\n  line-height: 1.5;\n  color: #121212;\n}\n\ntextarea,\ninput,\nbutton {\n  font-size: 1rem;\n  font-family: inherit;\n  border: none;\n  border-radius: 8px;\n  padding: 0.5rem 0.75rem;\n  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);\n  background-color: white;\n  line-height: 1.5;\n  margin: 0;\n}\n\nbutton {\n  color: #3992ff;\n  font-weight: 500;\n}\n\ntextarea:hover,\ninput:hover,\nbutton:hover {\n  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);\n}\n\nbutton:active {\n  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.4);\n  transform: translateY(1px);\n}\n\n#contact h1 {\n  display: flex;\n  align-items: flex-start;\n  gap: 1rem;\n}\n\n#contact h1 form {\n  display: flex;\n  align-items: center;\n  margin-top: 0.25rem;\n}\n\n#contact h1 form button {\n  box-shadow: none;\n  font-size: 1.5rem;\n  font-weight: 400;\n  padding: 0;\n}\n\n#contact h1 form button[value=true] {\n  color: #a4a4a4;\n}\n\n#contact h1 form button[value=true]:hover,\n#contact h1 form button[value=false] {\n  color: #eeb004;\n}\n\nform[action$=destroy] button {\n  color: #f44250;\n}\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border-width: 0;\n}\n\n#root {\n  display: flex;\n  height: 100%;\n  width: 100%;\n}\n\n#sidebar {\n  width: 22rem;\n  background-color: #f7f7f7;\n  border-right: solid 1px #e3e3e3;\n  display: flex;\n  flex-direction: column;\n}\n\n#sidebar > * {\n  padding-left: 2rem;\n  padding-right: 2rem;\n}\n\n#sidebar h1 {\n  font-size: 1rem;\n  font-weight: 500;\n  display: flex;\n  align-items: center;\n  margin: 0;\n  padding: 1rem 2rem;\n  border-top: 1px solid #e3e3e3;\n  order: 1;\n  line-height: 1;\n}\n\n#sidebar h1::before {\n  content: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  margin-right: 0.5rem;\n  position: relative;\n  top: 1px;\n}\n\n#sidebar > div {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  border-bottom: 1px solid #e3e3e3;\n}\n\n#sidebar > div form {\n  position: relative;\n}\n\n#sidebar > div form input[type=search] {\n  width: 100%;\n  padding-left: 2rem;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n  background-repeat: no-repeat;\n  background-position: 0.625rem 0.75rem;\n  background-size: 1rem;\n  position: relative;\n}\n\n#sidebar > div form input[type=search].loading {\n  background-image: none;\n}\n\n#search-spinner {\n  width: 1rem;\n  height: 1rem;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ");\n  animation: spin 1s infinite linear;\n  position: absolute;\n  left: 0.625rem;\n  top: 0.75rem;\n}\n\n@keyframes spin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n#sidebar nav {\n  flex: 1;\n  overflow: auto;\n  padding-top: 1rem;\n}\n\n#sidebar nav a span {\n  float: right;\n  color: #eeb004;\n}\n\n#sidebar nav a.active span {\n  color: inherit;\n}\n\ni {\n  color: #818181;\n}\n\n#sidebar nav .active i {\n  color: inherit;\n}\n\n#sidebar ul {\n  padding: 0;\n  margin: 0;\n  list-style: none;\n}\n\n#sidebar li {\n  margin: 0.25rem 0;\n}\n\n#sidebar nav a {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  overflow: hidden;\n  white-space: pre;\n  padding: 0.5rem;\n  border-radius: 8px;\n  color: inherit;\n  text-decoration: none;\n  gap: 1rem;\n}\n\n#sidebar nav a:hover {\n  background: #e3e3e3;\n}\n\n#sidebar nav a.active {\n  background: hsl(224, 98%, 58%);\n  color: white;\n}\n\n#sidebar nav a.pending {\n  color: hsl(224, 98%, 58%);\n}\n\n#detail {\n  flex: 1;\n  padding: 2rem 4rem;\n  width: 100%;\n}\n\n#detail.loading {\n  opacity: 0.25;\n  transition: opacity 200ms;\n  transition-delay: 200ms;\n}\n\n#contact {\n  max-width: 40rem;\n  display: flex;\n}\n\n#contact h1 {\n  font-size: 2rem;\n  font-weight: 700;\n  margin: 0;\n  line-height: 1.2;\n}\n\n#contact h1 + p {\n  margin: 0;\n}\n\n#contact h1 + p + p {\n  white-space: break-spaces;\n}\n\n#contact h1:focus {\n  outline: none;\n  color: hsl(224, 98%, 58%);\n}\n\n#contact a[href*=twitter] {\n  display: flex;\n  font-size: 1.5rem;\n  color: #3992ff;\n  text-decoration: none;\n}\n\n#contact a[href*=twitter]:hover {\n  text-decoration: underline;\n}\n\n#contact img {\n  width: 12rem;\n  height: 12rem;\n  background: #c8c8c8;\n  margin-right: 2rem;\n  border-radius: 1.5rem;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n\n#contact h1 ~ div {\n  display: flex;\n  gap: 0.5rem;\n  margin: 1rem 0;\n}\n\n#contact-form {\n  display: flex;\n  max-width: 40rem;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n#contact-form > p:first-child {\n  margin: 0;\n  padding: 0;\n}\n\n#contact-form > p:first-child > :nth-child(2) {\n  margin-right: 1rem;\n}\n\n#contact-form > p:first-child,\n#contact-form label {\n  display: flex;\n}\n\n#contact-form p:first-child span,\n#contact-form label span {\n  width: 8rem;\n}\n\n#contact-form p:first-child input,\n#contact-form label input,\n#contact-form label textarea {\n  flex-grow: 2;\n}\n\n#contact-form-avatar {\n  margin-right: 2rem;\n}\n\n#contact-form-avatar img {\n  width: 12rem;\n  height: 12rem;\n  background: hsla(0, 0%, 0%, 0.2);\n  border-radius: 1rem;\n}\n\n#contact-form-avatar input {\n  box-sizing: border-box;\n  width: 100%;\n}\n\n#contact-form p:last-child {\n  display: flex;\n  gap: 0.5rem;\n  margin: 0 0 0 8rem;\n}\n\n#contact-form p:last-child button[type=button] {\n  color: inherit;\n}\n\n#zero-state {\n  margin: 2rem auto;\n  text-align: center;\n  color: #818181;\n}\n\n#zero-state a {\n  color: inherit;\n}\n\n#zero-state a:hover {\n  color: #121212;\n}\n\n#zero-state:before {\n  display: block;\n  margin-bottom: 0.5rem;\n  content: url(" + ___CSS_LOADER_URL_REPLACEMENT_3___ + ");\n}\n\n#error-page {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  width: 100%;\n}", "",{"version":3,"sources":["webpack://./src/index.css"],"names":[],"mappings":"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","sourcesContent":["html {\r\n\tbox-sizing: border-box;\r\n}\r\n\r\n*,\r\n*:before,\r\n*:after {\r\n\tbox-sizing: inherit;\r\n}\r\n\r\nbody {\r\n\tfont-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\",\r\n\t\t\"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\",\r\n\t\tsans-serif;\r\n\t-webkit-font-smoothing: antialiased;\r\n\t-moz-osx-font-smoothing: grayscale;\r\n}\r\n\r\ncode {\r\n\tfont-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\",\r\n\t\tmonospace;\r\n}\r\n\r\nhtml,\r\nbody {\r\n\theight: 100%;\r\n\tmargin: 0;\r\n\tline-height: 1.5;\r\n\tcolor: #121212;\r\n}\r\n\r\ntextarea,\r\ninput,\r\nbutton {\r\n\tfont-size: 1rem;\r\n\tfont-family: inherit;\r\n\tborder: none;\r\n\tborder-radius: 8px;\r\n\tpadding: 0.5rem 0.75rem;\r\n\tbox-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);\r\n\tbackground-color: white;\r\n\tline-height: 1.5;\r\n\tmargin: 0;\r\n}\r\n\r\nbutton {\r\n\tcolor: #3992ff;\r\n\tfont-weight: 500;\r\n}\r\n\r\ntextarea:hover,\r\ninput:hover,\r\nbutton:hover {\r\n\tbox-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);\r\n}\r\n\r\nbutton:active {\r\n\tbox-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.4);\r\n\ttransform: translateY(1px);\r\n}\r\n\r\n#contact h1 {\r\n\tdisplay: flex;\r\n\talign-items: flex-start;\r\n\tgap: 1rem;\r\n}\r\n\r\n#contact h1 form {\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n\tmargin-top: 0.25rem;\r\n}\r\n\r\n#contact h1 form button {\r\n\tbox-shadow: none;\r\n\tfont-size: 1.5rem;\r\n\tfont-weight: 400;\r\n\tpadding: 0;\r\n}\r\n\r\n#contact h1 form button[value=\"true\"] {\r\n\tcolor: #a4a4a4;\r\n}\r\n\r\n#contact h1 form button[value=\"true\"]:hover,\r\n#contact h1 form button[value=\"false\"] {\r\n\tcolor: #eeb004;\r\n}\r\n\r\nform[action$=\"destroy\"] button {\r\n\tcolor: #f44250;\r\n}\r\n\r\n.sr-only {\r\n\tposition: absolute;\r\n\twidth: 1px;\r\n\theight: 1px;\r\n\tpadding: 0;\r\n\tmargin: -1px;\r\n\toverflow: hidden;\r\n\tclip: rect(0, 0, 0, 0);\r\n\twhite-space: nowrap;\r\n\tborder-width: 0;\r\n}\r\n\r\n#root {\r\n\tdisplay: flex;\r\n\theight: 100%;\r\n\twidth: 100%;\r\n}\r\n\r\n#sidebar {\r\n\twidth: 22rem;\r\n\tbackground-color: #f7f7f7;\r\n\tborder-right: solid 1px #e3e3e3;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n\r\n#sidebar>* {\r\n\tpadding-left: 2rem;\r\n\tpadding-right: 2rem;\r\n}\r\n\r\n#sidebar h1 {\r\n\tfont-size: 1rem;\r\n\tfont-weight: 500;\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n\tmargin: 0;\r\n\tpadding: 1rem 2rem;\r\n\tborder-top: 1px solid #e3e3e3;\r\n\torder: 1;\r\n\tline-height: 1;\r\n}\r\n\r\n#sidebar h1::before {\r\n\tcontent: url(\"data:image/svg+xml,%3Csvg width='25' height='18' viewBox='0 0 25 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.4127 6.4904C18.6984 6.26581 18.3295 6.34153 17.5802 6.25965C16.4219 6.13331 15.9604 5.68062 15.7646 4.51554C15.6551 3.86516 15.7844 2.9129 15.5048 2.32334C14.9699 1.19921 13.7183 0.695046 12.461 0.982805C11.3994 1.22611 10.516 2.28708 10.4671 3.37612C10.4112 4.61957 11.1197 5.68054 12.3363 6.04667C12.9143 6.22097 13.5284 6.3087 14.132 6.35315C15.2391 6.43386 15.3241 7.04923 15.6236 7.55574C15.8124 7.87508 15.9954 8.18975 15.9954 9.14193C15.9954 10.0941 15.8112 10.4088 15.6236 10.7281C15.3241 11.2334 14.9547 11.5645 13.8477 11.6464C13.244 11.6908 12.6288 11.7786 12.0519 11.9528C10.8353 12.3201 10.1268 13.3799 10.1828 14.6234C10.2317 15.7124 11.115 16.7734 12.1766 17.0167C13.434 17.3056 14.6855 16.8003 15.2204 15.6762C15.5013 15.0866 15.6551 14.4187 15.7646 13.7683C15.9616 12.6032 16.423 12.1505 17.5802 12.0242C18.3295 11.9423 19.1049 12.0242 19.8071 11.6253C20.5491 11.0832 21.212 10.2696 21.212 9.14192C21.212 8.01428 20.4976 6.83197 19.4127 6.4904Z' fill='%23F44250'/%3E%3Cpath d='M7.59953 11.7459C6.12615 11.7459 4.92432 10.5547 4.92432 9.09441C4.92432 7.63407 6.12615 6.44287 7.59953 6.44287C9.0729 6.44287 10.2747 7.63407 10.2747 9.09441C10.2747 10.5536 9.07172 11.7459 7.59953 11.7459Z' fill='black'/%3E%3Cpath d='M2.64217 17.0965C1.18419 17.093 -0.0034949 15.8971 7.72743e-06 14.4356C0.00352588 12.9765 1.1994 11.7888 2.66089 11.7935C4.12004 11.797 5.30772 12.9929 5.30306 14.4544C5.29953 15.9123 4.10366 17.1 2.64217 17.0965Z' fill='black'/%3E%3Cpath d='M22.3677 17.0965C20.9051 17.1046 19.7046 15.9217 19.6963 14.4649C19.6882 13.0023 20.8712 11.8017 22.3279 11.7935C23.7906 11.7854 24.9911 12.9683 24.9993 14.4251C25.0075 15.8866 23.8245 17.0883 22.3677 17.0965Z' fill='black'/%3E%3C/svg%3E%0A\");\r\n\tmargin-right: 0.5rem;\r\n\tposition: relative;\r\n\ttop: 1px;\r\n}\r\n\r\n#sidebar>div {\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n\tgap: 0.5rem;\r\n\tpadding-top: 1rem;\r\n\tpadding-bottom: 1rem;\r\n\tborder-bottom: 1px solid #e3e3e3;\r\n}\r\n\r\n#sidebar>div form {\r\n\tposition: relative;\r\n}\r\n\r\n#sidebar>div form input[type=\"search\"] {\r\n\twidth: 100%;\r\n\tpadding-left: 2rem;\r\n\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='%23999' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' /%3E%3C/svg%3E\");\r\n\tbackground-repeat: no-repeat;\r\n\tbackground-position: 0.625rem 0.75rem;\r\n\tbackground-size: 1rem;\r\n\tposition: relative;\r\n}\r\n\r\n#sidebar>div form input[type=\"search\"].loading {\r\n\tbackground-image: none;\r\n}\r\n\r\n#search-spinner {\r\n\twidth: 1rem;\r\n\theight: 1rem;\r\n\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%23000' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M20 4v5h-.582m0 0a8.001 8.001 0 00-15.356 2m15.356-2H15M4 20v-5h.581m0 0a8.003 8.003 0 0015.357-2M4.581 15H9' /%3E%3C/svg%3E\");\r\n\tanimation: spin 1s infinite linear;\r\n\tposition: absolute;\r\n\tleft: 0.625rem;\r\n\ttop: 0.75rem;\r\n}\r\n\r\n@keyframes spin {\r\n\tfrom {\r\n\t\ttransform: rotate(0deg);\r\n\t}\r\n\r\n\tto {\r\n\t\ttransform: rotate(360deg);\r\n\t}\r\n}\r\n\r\n#sidebar nav {\r\n\tflex: 1;\r\n\toverflow: auto;\r\n\tpadding-top: 1rem;\r\n}\r\n\r\n#sidebar nav a span {\r\n\tfloat: right;\r\n\tcolor: #eeb004;\r\n}\r\n\r\n#sidebar nav a.active span {\r\n\tcolor: inherit;\r\n}\r\n\r\ni {\r\n\tcolor: #818181;\r\n}\r\n\r\n#sidebar nav .active i {\r\n\tcolor: inherit;\r\n}\r\n\r\n#sidebar ul {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tlist-style: none;\r\n}\r\n\r\n#sidebar li {\r\n\tmargin: 0.25rem 0;\r\n}\r\n\r\n#sidebar nav a {\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n\tjustify-content: space-between;\r\n\toverflow: hidden;\r\n\r\n\twhite-space: pre;\r\n\tpadding: 0.5rem;\r\n\tborder-radius: 8px;\r\n\tcolor: inherit;\r\n\ttext-decoration: none;\r\n\tgap: 1rem;\r\n}\r\n\r\n#sidebar nav a:hover {\r\n\tbackground: #e3e3e3;\r\n}\r\n\r\n#sidebar nav a.active {\r\n\tbackground: hsl(224, 98%, 58%);\r\n\tcolor: white;\r\n}\r\n\r\n#sidebar nav a.pending {\r\n\tcolor: hsl(224, 98%, 58%);\r\n}\r\n\r\n#detail {\r\n\tflex: 1;\r\n\tpadding: 2rem 4rem;\r\n\twidth: 100%;\r\n}\r\n\r\n#detail.loading {\r\n\topacity: 0.25;\r\n\ttransition: opacity 200ms;\r\n\ttransition-delay: 200ms;\r\n}\r\n\r\n#contact {\r\n\tmax-width: 40rem;\r\n\tdisplay: flex;\r\n}\r\n\r\n#contact h1 {\r\n\tfont-size: 2rem;\r\n\tfont-weight: 700;\r\n\tmargin: 0;\r\n\tline-height: 1.2;\r\n}\r\n\r\n#contact h1+p {\r\n\tmargin: 0;\r\n}\r\n\r\n#contact h1+p+p {\r\n\twhite-space: break-spaces;\r\n}\r\n\r\n#contact h1:focus {\r\n\toutline: none;\r\n\tcolor: hsl(224, 98%, 58%);\r\n}\r\n\r\n#contact a[href*=\"twitter\"] {\r\n\tdisplay: flex;\r\n\tfont-size: 1.5rem;\r\n\tcolor: #3992ff;\r\n\ttext-decoration: none;\r\n}\r\n\r\n#contact a[href*=\"twitter\"]:hover {\r\n\ttext-decoration: underline;\r\n}\r\n\r\n#contact img {\r\n\twidth: 12rem;\r\n\theight: 12rem;\r\n\tbackground: #c8c8c8;\r\n\tmargin-right: 2rem;\r\n\tborder-radius: 1.5rem;\r\n\tobject-fit: cover;\r\n}\r\n\r\n#contact h1~div {\r\n\tdisplay: flex;\r\n\tgap: 0.5rem;\r\n\tmargin: 1rem 0;\r\n}\r\n\r\n#contact-form {\r\n\tdisplay: flex;\r\n\tmax-width: 40rem;\r\n\tflex-direction: column;\r\n\tgap: 1rem;\r\n}\r\n\r\n#contact-form>p:first-child {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n}\r\n\r\n#contact-form>p:first-child> :nth-child(2) {\r\n\tmargin-right: 1rem;\r\n}\r\n\r\n#contact-form>p:first-child,\r\n#contact-form label {\r\n\tdisplay: flex;\r\n}\r\n\r\n#contact-form p:first-child span,\r\n#contact-form label span {\r\n\twidth: 8rem;\r\n}\r\n\r\n#contact-form p:first-child input,\r\n#contact-form label input,\r\n#contact-form label textarea {\r\n\tflex-grow: 2;\r\n}\r\n\r\n#contact-form-avatar {\r\n\tmargin-right: 2rem;\r\n}\r\n\r\n#contact-form-avatar img {\r\n\twidth: 12rem;\r\n\theight: 12rem;\r\n\tbackground: hsla(0, 0%, 0%, 0.2);\r\n\tborder-radius: 1rem;\r\n}\r\n\r\n#contact-form-avatar input {\r\n\tbox-sizing: border-box;\r\n\twidth: 100%;\r\n}\r\n\r\n#contact-form p:last-child {\r\n\tdisplay: flex;\r\n\tgap: 0.5rem;\r\n\tmargin: 0 0 0 8rem;\r\n}\r\n\r\n#contact-form p:last-child button[type=\"button\"] {\r\n\tcolor: inherit;\r\n}\r\n\r\n#zero-state {\r\n\tmargin: 2rem auto;\r\n\ttext-align: center;\r\n\tcolor: #818181;\r\n}\r\n\r\n#zero-state a {\r\n\tcolor: inherit;\r\n}\r\n\r\n#zero-state a:hover {\r\n\tcolor: #121212;\r\n}\r\n\r\n#zero-state:before {\r\n\tdisplay: block;\r\n\tmargin-bottom: 0.5rem;\r\n\tcontent: url(\"data:image/svg+xml,%3Csvg width='50' height='33' viewBox='0 0 50 33' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M38.8262 11.1744C37.3975 10.7252 36.6597 10.8766 35.1611 10.7128C32.8444 10.4602 31.9215 9.55475 31.5299 7.22456C31.3108 5.92377 31.5695 4.01923 31.0102 2.8401C29.9404 0.591789 27.4373 -0.416556 24.9225 0.158973C22.7992 0.645599 21.0326 2.76757 20.9347 4.94569C20.8228 7.43263 22.2399 9.5546 24.6731 10.2869C25.8291 10.6355 27.0574 10.8109 28.2646 10.8998C30.4788 11.0613 30.6489 12.292 31.2479 13.3051C31.6255 13.9438 31.9914 14.5731 31.9914 16.4775C31.9914 18.3819 31.6231 19.0112 31.2479 19.6499C30.6489 20.6606 29.9101 21.3227 27.696 21.4865C26.4887 21.5754 25.2581 21.7508 24.1044 22.0994C21.6712 22.834 20.2542 24.9537 20.366 27.4406C20.4639 29.6187 22.2306 31.7407 24.3538 32.2273C26.8686 32.8052 29.3717 31.7945 30.4415 29.5462C31.0032 28.3671 31.3108 27.0312 31.5299 25.7304C31.9238 23.4002 32.8467 22.4948 35.1611 22.2421C36.6597 22.0784 38.2107 22.2421 39.615 21.4443C41.099 20.36 42.4248 18.7328 42.4248 16.4775C42.4248 14.2222 40.9961 11.8575 38.8262 11.1744Z' fill='%23E3E3E3'/%3E%3Cpath d='M15.1991 21.6854C12.2523 21.6854 9.84863 19.303 9.84863 16.3823C9.84863 13.4615 12.2523 11.0791 15.1991 11.0791C18.1459 11.0791 20.5497 13.4615 20.5497 16.3823C20.5497 19.3006 18.1436 21.6854 15.1991 21.6854Z' fill='%23E3E3E3'/%3E%3Cpath d='M5.28442 32.3871C2.36841 32.38 -0.00698992 29.9882 1.54551e-05 27.0652C0.00705187 24.1469 2.39884 21.7715 5.32187 21.7808C8.24022 21.7878 10.6156 24.1796 10.6063 27.1027C10.5992 30.0187 8.20746 32.3941 5.28442 32.3871Z' fill='%23E3E3E3'/%3E%3Cpath d='M44.736 32.387C41.8107 32.4033 39.4096 30.0373 39.3932 27.1237C39.3769 24.1984 41.7428 21.7973 44.6564 21.7808C47.5817 21.7645 49.9828 24.1305 49.9993 27.0441C50.0156 29.9671 47.6496 32.3705 44.736 32.387Z' fill='%23E3E3E3'/%3E%3C/svg%3E%0A\");\r\n}\r\n\r\n#error-page {\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\talign-items: center;\r\n\tjustify-content: center;\r\n\twidth: 100%;\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "html {\n  box-sizing: border-box;\n}\n\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace;\n}\n\nhtml,\nbody {\n  height: 100%;\n  margin: 0;\n  line-height: 1.5;\n  color: #121212;\n}\n\ntextarea,\ninput,\nbutton {\n  font-size: 1rem;\n  font-family: inherit;\n  border: none;\n  border-radius: 8px;\n  padding: 0.5rem 0.75rem;\n  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);\n  background-color: white;\n  line-height: 1.5;\n  margin: 0;\n}\n\nbutton {\n  color: #3992ff;\n  font-weight: 500;\n}\n\ntextarea:hover,\ninput:hover,\nbutton:hover {\n  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);\n}\n\nbutton:active {\n  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.4);\n  transform: translateY(1px);\n}\n\n#task h1 {\n  display: flex;\n  align-items: flex-start;\n  gap: 1rem;\n}\n\n#task h1 form {\n  display: flex;\n  align-items: center;\n  margin-top: 0.25rem;\n}\n\n#task h1 form button {\n  box-shadow: none;\n  font-size: 1.5rem;\n  font-weight: 400;\n  padding: 0;\n}\n\n#task h1 form button[value=true] {\n  color: #a4a4a4;\n}\n\n#task h1 form button[value=true]:hover,\n#task h1 form button[value=false] {\n  color: #eeb004;\n}\n\nform[action$=destroy] button {\n  color: #f44250;\n}\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border-width: 0;\n}\n\n#root {\n  display: flex;\n  height: 100%;\n  width: 100%;\n}\n\n#sidebar {\n  width: 22rem;\n  background-color: #f7f7f7;\n  border-right: solid 1px #e3e3e3;\n  display: flex;\n  flex-direction: column;\n}\n\n#sidebar > * {\n  padding-left: 2rem;\n  padding-right: 2rem;\n}\n\n#sidebar h1 {\n  font-size: 1rem;\n  font-weight: 500;\n  display: flex;\n  align-items: center;\n  margin: 0;\n  padding: 1rem 2rem;\n  border-top: 1px solid #e3e3e3;\n  order: 1;\n  line-height: 1;\n}\n\n#sidebar h1::before {\n  content: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  margin-right: 0.5rem;\n  position: relative;\n  top: 1px;\n}\n\n#sidebar > div {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  border-bottom: 1px solid #e3e3e3;\n}\n\n#sidebar > div form {\n  position: relative;\n}\n\n#sidebar > div form input[type=search] {\n  width: 100%;\n  padding-left: 2rem;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n  background-repeat: no-repeat;\n  background-position: 0.625rem 0.75rem;\n  background-size: 1rem;\n  position: relative;\n}\n\n#sidebar > div form input[type=search].loading {\n  background-image: none;\n}\n\n#search-spinner {\n  width: 1rem;\n  height: 1rem;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ");\n  animation: spin 1s infinite linear;\n  position: absolute;\n  left: 0.625rem;\n  top: 0.75rem;\n}\n\n@keyframes spin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n#sidebar nav {\n  flex: 1;\n  overflow: auto;\n  padding-top: 1rem;\n}\n\n#sidebar nav a span {\n  float: right;\n  color: #eeb004;\n}\n\n#sidebar nav a.active span {\n  color: inherit;\n}\n\ni {\n  color: #818181;\n}\n\n#sidebar nav .active i {\n  color: inherit;\n}\n\n#sidebar ul {\n  padding: 0;\n  margin: 0;\n  list-style: none;\n}\n\n#sidebar li {\n  margin: 0.25rem 0;\n}\n\n#sidebar nav a {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  overflow: hidden;\n  white-space: pre;\n  padding: 0.5rem;\n  border-radius: 8px;\n  color: inherit;\n  text-decoration: none;\n  gap: 1rem;\n}\n\n#sidebar nav a:hover {\n  background: #e3e3e3;\n}\n\n#sidebar nav a.active {\n  background: hsl(224, 98%, 58%);\n  color: white;\n}\n\n#sidebar nav a.pending {\n  color: hsl(224, 98%, 58%);\n}\n\n#detail {\n  flex: 1;\n  padding: 2rem 4rem;\n  width: 100%;\n}\n\n#detail.loading {\n  opacity: 0.25;\n  transition: opacity 200ms;\n  transition-delay: 200ms;\n}\n\n#task {\n  max-width: 40rem;\n  display: flex;\n}\n\n#task h1 {\n  font-size: 2rem;\n  font-weight: 700;\n  margin: 0;\n  line-height: 1.2;\n}\n\n#task h1 + p {\n  margin: 0;\n}\n\n#task h1 + p + p {\n  white-space: break-spaces;\n}\n\n#task h1:focus {\n  outline: none;\n  color: hsl(224, 98%, 58%);\n}\n\n#task img {\n  width: 12rem;\n  height: 12rem;\n  background: #c8c8c8;\n  margin-right: 2rem;\n  border-radius: 1.5rem;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n\n#task h1 ~ div {\n  display: flex;\n  gap: 0.5rem;\n  margin: 1rem 0;\n}\n\n#task-form {\n  display: flex;\n  max-width: 40rem;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n#task-form > p:first-child {\n  margin: 0;\n  padding: 0;\n}\n\n#task-form > p:first-child > :nth-child(2) {\n  margin-right: 1rem;\n}\n\n#task-form > p:first-child,\n#task-form label {\n  display: flex;\n}\n\n#task-form p:first-child span,\n#task-form label span {\n  width: 8rem;\n}\n\n#task-form p:first-child input,\n#task-form label input,\n#task-form label textarea {\n  flex-grow: 2;\n}\n\n#task-form-avatar {\n  margin-right: 2rem;\n}\n\n#task-form-avatar img {\n  width: 12rem;\n  height: 12rem;\n  background: hsla(0, 0%, 0%, 0.2);\n  border-radius: 1rem;\n}\n\n#task-form-avatar input {\n  box-sizing: border-box;\n  width: 100%;\n}\n\n#task-form p:last-child {\n  display: flex;\n  gap: 0.5rem;\n  margin: 0 0 0 8rem;\n}\n\n#task-form p:last-child button[type=button] {\n  color: inherit;\n}\n\n#zero-state {\n  margin: 2rem auto;\n  text-align: center;\n  color: #818181;\n}\n\n#zero-state a {\n  color: inherit;\n}\n\n#zero-state a:hover {\n  color: #121212;\n}\n\n#zero-state:before {\n  display: block;\n  margin-bottom: 0.5rem;\n  content: url(" + ___CSS_LOADER_URL_REPLACEMENT_3___ + ");\n}\n\n#error-page {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  width: 100%;\n}", "",{"version":3,"sources":["webpack://./src/index.css"],"names":[],"mappings":"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","sourcesContent":["html {\n\tbox-sizing: border-box;\n}\n\n*,\n*:before,\n*:after {\n\tbox-sizing: inherit;\n}\n\nbody {\n\tfont-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\",\n\t\t\"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\",\n\t\tsans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n}\n\ncode {\n\tfont-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\",\n\t\tmonospace;\n}\n\nhtml,\nbody {\n\theight: 100%;\n\tmargin: 0;\n\tline-height: 1.5;\n\tcolor: #121212;\n}\n\ntextarea,\ninput,\nbutton {\n\tfont-size: 1rem;\n\tfont-family: inherit;\n\tborder: none;\n\tborder-radius: 8px;\n\tpadding: 0.5rem 0.75rem;\n\tbox-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);\n\tbackground-color: white;\n\tline-height: 1.5;\n\tmargin: 0;\n}\n\nbutton {\n\tcolor: #3992ff;\n\tfont-weight: 500;\n}\n\ntextarea:hover,\ninput:hover,\nbutton:hover {\n\tbox-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);\n}\n\nbutton:active {\n\tbox-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.4);\n\ttransform: translateY(1px);\n}\n\n#task h1 {\n\tdisplay: flex;\n\talign-items: flex-start;\n\tgap: 1rem;\n}\n\n#task h1 form {\n\tdisplay: flex;\n\talign-items: center;\n\tmargin-top: 0.25rem;\n}\n\n#task h1 form button {\n\tbox-shadow: none;\n\tfont-size: 1.5rem;\n\tfont-weight: 400;\n\tpadding: 0;\n}\n\n#task h1 form button[value=\"true\"] {\n\tcolor: #a4a4a4;\n}\n\n#task h1 form button[value=\"true\"]:hover,\n#task h1 form button[value=\"false\"] {\n\tcolor: #eeb004;\n}\n\nform[action$=\"destroy\"] button {\n\tcolor: #f44250;\n}\n\n.sr-only {\n\tposition: absolute;\n\twidth: 1px;\n\theight: 1px;\n\tpadding: 0;\n\tmargin: -1px;\n\toverflow: hidden;\n\tclip: rect(0, 0, 0, 0);\n\twhite-space: nowrap;\n\tborder-width: 0;\n}\n\n#root {\n\tdisplay: flex;\n\theight: 100%;\n\twidth: 100%;\n}\n\n#sidebar {\n\twidth: 22rem;\n\tbackground-color: #f7f7f7;\n\tborder-right: solid 1px #e3e3e3;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n#sidebar>* {\n\tpadding-left: 2rem;\n\tpadding-right: 2rem;\n}\n\n#sidebar h1 {\n\tfont-size: 1rem;\n\tfont-weight: 500;\n\tdisplay: flex;\n\talign-items: center;\n\tmargin: 0;\n\tpadding: 1rem 2rem;\n\tborder-top: 1px solid #e3e3e3;\n\torder: 1;\n\tline-height: 1;\n}\n\n#sidebar h1::before {\n\tcontent: url(\"data:image/svg+xml,%3Csvg width='25' height='18' viewBox='0 0 25 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.4127 6.4904C18.6984 6.26581 18.3295 6.34153 17.5802 6.25965C16.4219 6.13331 15.9604 5.68062 15.7646 4.51554C15.6551 3.86516 15.7844 2.9129 15.5048 2.32334C14.9699 1.19921 13.7183 0.695046 12.461 0.982805C11.3994 1.22611 10.516 2.28708 10.4671 3.37612C10.4112 4.61957 11.1197 5.68054 12.3363 6.04667C12.9143 6.22097 13.5284 6.3087 14.132 6.35315C15.2391 6.43386 15.3241 7.04923 15.6236 7.55574C15.8124 7.87508 15.9954 8.18975 15.9954 9.14193C15.9954 10.0941 15.8112 10.4088 15.6236 10.7281C15.3241 11.2334 14.9547 11.5645 13.8477 11.6464C13.244 11.6908 12.6288 11.7786 12.0519 11.9528C10.8353 12.3201 10.1268 13.3799 10.1828 14.6234C10.2317 15.7124 11.115 16.7734 12.1766 17.0167C13.434 17.3056 14.6855 16.8003 15.2204 15.6762C15.5013 15.0866 15.6551 14.4187 15.7646 13.7683C15.9616 12.6032 16.423 12.1505 17.5802 12.0242C18.3295 11.9423 19.1049 12.0242 19.8071 11.6253C20.5491 11.0832 21.212 10.2696 21.212 9.14192C21.212 8.01428 20.4976 6.83197 19.4127 6.4904Z' fill='%23F44250'/%3E%3Cpath d='M7.59953 11.7459C6.12615 11.7459 4.92432 10.5547 4.92432 9.09441C4.92432 7.63407 6.12615 6.44287 7.59953 6.44287C9.0729 6.44287 10.2747 7.63407 10.2747 9.09441C10.2747 10.5536 9.07172 11.7459 7.59953 11.7459Z' fill='black'/%3E%3Cpath d='M2.64217 17.0965C1.18419 17.093 -0.0034949 15.8971 7.72743e-06 14.4356C0.00352588 12.9765 1.1994 11.7888 2.66089 11.7935C4.12004 11.797 5.30772 12.9929 5.30306 14.4544C5.29953 15.9123 4.10366 17.1 2.64217 17.0965Z' fill='black'/%3E%3Cpath d='M22.3677 17.0965C20.9051 17.1046 19.7046 15.9217 19.6963 14.4649C19.6882 13.0023 20.8712 11.8017 22.3279 11.7935C23.7906 11.7854 24.9911 12.9683 24.9993 14.4251C25.0075 15.8866 23.8245 17.0883 22.3677 17.0965Z' fill='black'/%3E%3C/svg%3E%0A\");\n\tmargin-right: 0.5rem;\n\tposition: relative;\n\ttop: 1px;\n}\n\n#sidebar>div {\n\tdisplay: flex;\n\talign-items: center;\n\tgap: 0.5rem;\n\tpadding-top: 1rem;\n\tpadding-bottom: 1rem;\n\tborder-bottom: 1px solid #e3e3e3;\n}\n\n#sidebar>div form {\n\tposition: relative;\n}\n\n#sidebar>div form input[type=\"search\"] {\n\twidth: 100%;\n\tpadding-left: 2rem;\n\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='%23999' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' /%3E%3C/svg%3E\");\n\tbackground-repeat: no-repeat;\n\tbackground-position: 0.625rem 0.75rem;\n\tbackground-size: 1rem;\n\tposition: relative;\n}\n\n#sidebar>div form input[type=\"search\"].loading {\n\tbackground-image: none;\n}\n\n#search-spinner {\n\twidth: 1rem;\n\theight: 1rem;\n\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%23000' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M20 4v5h-.582m0 0a8.001 8.001 0 00-15.356 2m15.356-2H15M4 20v-5h.581m0 0a8.003 8.003 0 0015.357-2M4.581 15H9' /%3E%3C/svg%3E\");\n\tanimation: spin 1s infinite linear;\n\tposition: absolute;\n\tleft: 0.625rem;\n\ttop: 0.75rem;\n}\n\n@keyframes spin {\n\tfrom {\n\t\ttransform: rotate(0deg);\n\t}\n\n\tto {\n\t\ttransform: rotate(360deg);\n\t}\n}\n\n#sidebar nav {\n\tflex: 1;\n\toverflow: auto;\n\tpadding-top: 1rem;\n}\n\n#sidebar nav a span {\n\tfloat: right;\n\tcolor: #eeb004;\n}\n\n#sidebar nav a.active span {\n\tcolor: inherit;\n}\n\ni {\n\tcolor: #818181;\n}\n\n#sidebar nav .active i {\n\tcolor: inherit;\n}\n\n#sidebar ul {\n\tpadding: 0;\n\tmargin: 0;\n\tlist-style: none;\n}\n\n#sidebar li {\n\tmargin: 0.25rem 0;\n}\n\n#sidebar nav a {\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: space-between;\n\toverflow: hidden;\n\n\twhite-space: pre;\n\tpadding: 0.5rem;\n\tborder-radius: 8px;\n\tcolor: inherit;\n\ttext-decoration: none;\n\tgap: 1rem;\n}\n\n#sidebar nav a:hover {\n\tbackground: #e3e3e3;\n}\n\n#sidebar nav a.active {\n\tbackground: hsl(224, 98%, 58%);\n\tcolor: white;\n}\n\n#sidebar nav a.pending {\n\tcolor: hsl(224, 98%, 58%);\n}\n\n#detail {\n\tflex: 1;\n\tpadding: 2rem 4rem;\n\twidth: 100%;\n}\n\n#detail.loading {\n\topacity: 0.25;\n\ttransition: opacity 200ms;\n\ttransition-delay: 200ms;\n}\n\n#task {\n\tmax-width: 40rem;\n\tdisplay: flex;\n}\n\n#task h1 {\n\tfont-size: 2rem;\n\tfont-weight: 700;\n\tmargin: 0;\n\tline-height: 1.2;\n}\n\n#task h1+p {\n\tmargin: 0;\n}\n\n#task h1+p+p {\n\twhite-space: break-spaces;\n}\n\n#task h1:focus {\n\toutline: none;\n\tcolor: hsl(224, 98%, 58%);\n}\n\n#task img {\n\twidth: 12rem;\n\theight: 12rem;\n\tbackground: #c8c8c8;\n\tmargin-right: 2rem;\n\tborder-radius: 1.5rem;\n\tobject-fit: cover;\n}\n\n#task h1~div {\n\tdisplay: flex;\n\tgap: 0.5rem;\n\tmargin: 1rem 0;\n}\n\n#task-form {\n\tdisplay: flex;\n\tmax-width: 40rem;\n\tflex-direction: column;\n\tgap: 1rem;\n}\n\n#task-form>p:first-child {\n\tmargin: 0;\n\tpadding: 0;\n}\n\n#task-form>p:first-child> :nth-child(2) {\n\tmargin-right: 1rem;\n}\n\n#task-form>p:first-child,\n#task-form label {\n\tdisplay: flex;\n}\n\n#task-form p:first-child span,\n#task-form label span {\n\twidth: 8rem;\n}\n\n#task-form p:first-child input,\n#task-form label input,\n#task-form label textarea {\n\tflex-grow: 2;\n}\n\n#task-form-avatar {\n\tmargin-right: 2rem;\n}\n\n#task-form-avatar img {\n\twidth: 12rem;\n\theight: 12rem;\n\tbackground: hsla(0, 0%, 0%, 0.2);\n\tborder-radius: 1rem;\n}\n\n#task-form-avatar input {\n\tbox-sizing: border-box;\n\twidth: 100%;\n}\n\n#task-form p:last-child {\n\tdisplay: flex;\n\tgap: 0.5rem;\n\tmargin: 0 0 0 8rem;\n}\n\n#task-form p:last-child button[type=\"button\"] {\n\tcolor: inherit;\n}\n\n#zero-state {\n\tmargin: 2rem auto;\n\ttext-align: center;\n\tcolor: #818181;\n}\n\n#zero-state a {\n\tcolor: inherit;\n}\n\n#zero-state a:hover {\n\tcolor: #121212;\n}\n\n#zero-state:before {\n\tdisplay: block;\n\tmargin-bottom: 0.5rem;\n\tcontent: url(\"data:image/svg+xml,%3Csvg width='50' height='33' viewBox='0 0 50 33' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M38.8262 11.1744C37.3975 10.7252 36.6597 10.8766 35.1611 10.7128C32.8444 10.4602 31.9215 9.55475 31.5299 7.22456C31.3108 5.92377 31.5695 4.01923 31.0102 2.8401C29.9404 0.591789 27.4373 -0.416556 24.9225 0.158973C22.7992 0.645599 21.0326 2.76757 20.9347 4.94569C20.8228 7.43263 22.2399 9.5546 24.6731 10.2869C25.8291 10.6355 27.0574 10.8109 28.2646 10.8998C30.4788 11.0613 30.6489 12.292 31.2479 13.3051C31.6255 13.9438 31.9914 14.5731 31.9914 16.4775C31.9914 18.3819 31.6231 19.0112 31.2479 19.6499C30.6489 20.6606 29.9101 21.3227 27.696 21.4865C26.4887 21.5754 25.2581 21.7508 24.1044 22.0994C21.6712 22.834 20.2542 24.9537 20.366 27.4406C20.4639 29.6187 22.2306 31.7407 24.3538 32.2273C26.8686 32.8052 29.3717 31.7945 30.4415 29.5462C31.0032 28.3671 31.3108 27.0312 31.5299 25.7304C31.9238 23.4002 32.8467 22.4948 35.1611 22.2421C36.6597 22.0784 38.2107 22.2421 39.615 21.4443C41.099 20.36 42.4248 18.7328 42.4248 16.4775C42.4248 14.2222 40.9961 11.8575 38.8262 11.1744Z' fill='%23E3E3E3'/%3E%3Cpath d='M15.1991 21.6854C12.2523 21.6854 9.84863 19.303 9.84863 16.3823C9.84863 13.4615 12.2523 11.0791 15.1991 11.0791C18.1459 11.0791 20.5497 13.4615 20.5497 16.3823C20.5497 19.3006 18.1436 21.6854 15.1991 21.6854Z' fill='%23E3E3E3'/%3E%3Cpath d='M5.28442 32.3871C2.36841 32.38 -0.00698992 29.9882 1.54551e-05 27.0652C0.00705187 24.1469 2.39884 21.7715 5.32187 21.7808C8.24022 21.7878 10.6156 24.1796 10.6063 27.1027C10.5992 30.0187 8.20746 32.3941 5.28442 32.3871Z' fill='%23E3E3E3'/%3E%3Cpath d='M44.736 32.387C41.8107 32.4033 39.4096 30.0373 39.3932 27.1237C39.3769 24.1984 41.7428 21.7973 44.6564 21.7808C47.5817 21.7645 49.9828 24.1305 49.9993 27.0441C50.0156 29.9671 47.6496 32.3705 44.736 32.387Z' fill='%23E3E3E3'/%3E%3C/svg%3E%0A\");\n}\n\n#error-page {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: center;\n\tjustify-content: center;\n\twidth: 100%;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -46745,7 +46723,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ "./src/index.css");
 /* harmony import */ var _routes_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes/root */ "./src/routes/root.tsx");
 /* harmony import */ var _error_page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./error-page */ "./src/error-page.tsx");
-/* harmony import */ var _routes_contact__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes/contact */ "./src/routes/contact.tsx");
+/* harmony import */ var _routes_task__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes/task */ "./src/routes/task.tsx");
 /* harmony import */ var _routes_edit__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./routes/edit */ "./src/routes/edit.tsx");
 /* harmony import */ var _routes_destroy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./routes/destroy */ "./src/routes/destroy.tsx");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -46779,17 +46757,17 @@ var router = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.createBrowserRoute
       index: true,
       element: /*#__PURE__*/React.createElement(Index, null)
     }, {
-      path: "contacts/:contactId",
-      element: /*#__PURE__*/React.createElement(_routes_contact__WEBPACK_IMPORTED_MODULE_5__["default"], null),
-      loader: _routes_contact__WEBPACK_IMPORTED_MODULE_5__.loader,
-      action: _routes_contact__WEBPACK_IMPORTED_MODULE_5__.action
+      path: "tasks/:taskId",
+      element: /*#__PURE__*/React.createElement(_routes_task__WEBPACK_IMPORTED_MODULE_5__["default"], null),
+      loader: _routes_task__WEBPACK_IMPORTED_MODULE_5__.loader,
+      action: _routes_task__WEBPACK_IMPORTED_MODULE_5__.action
     }, {
-      path: "/contacts/:contactId/edit",
+      path: "/tasks/:taskId/edit",
       element: /*#__PURE__*/React.createElement(_routes_edit__WEBPACK_IMPORTED_MODULE_6__["default"], null),
-      loader: _routes_contact__WEBPACK_IMPORTED_MODULE_5__.loader,
+      loader: _routes_task__WEBPACK_IMPORTED_MODULE_5__.loader,
       action: _routes_edit__WEBPACK_IMPORTED_MODULE_6__.action
     }, {
-      path: "contacts/:contactId/destroy",
+      path: "tasks/:taskId/destroy",
       action: _routes_destroy__WEBPACK_IMPORTED_MODULE_7__.action,
       errorElement: /*#__PURE__*/React.createElement("div", null, "Oops! There was an error.")
     }]

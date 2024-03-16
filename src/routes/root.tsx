@@ -1,12 +1,12 @@
 import { Form, Link, Outlet, useLoaderData, redirect, NavLink, useNavigation, useSubmit, } from "react-router-dom";
-import { getContacts, createContact } from "../contacts";
-import ContactType from "src/types/Contact";
+import { getTasks, createTask } from "../tasks";
+import TaskType from "src/types/Task";
 import { useEffect } from "react";
 
 export async function action(): Promise<Response> {
-	const contact = await createContact();
+	const task = await createTask();
 
-	return redirect(`/contacts/${contact.id}/edit`);
+	return redirect(`/tasks/${task.id}/edit`);
 }
 
 type loaderProps = {
@@ -15,16 +15,16 @@ type loaderProps = {
 	}
 }
 
-export async function loader({ request }: loaderProps): Promise<{ contacts: ContactType[], q: string }> {
+export async function loader({ request }: loaderProps): Promise<{ tasks: TaskType[], q: string }> {
 	const url = new URL(request.url);
 	const q = url.searchParams.get("q");
-	const contacts = await getContacts(q!);
+	const tasks = await getTasks(q!);
 
-	return { contacts, q: q! };
+	return { tasks, q: q! };
 }
 
 const Root = () => {
-	const { contacts, q } = useLoaderData() as { contacts: ContactType[], q: string };
+	const { tasks, q } = useLoaderData() as { tasks: TaskType[], q: string };
 	const navigation = useNavigation();
 	const submit = useSubmit();
 
@@ -41,13 +41,13 @@ const Root = () => {
 	return (
 		<>
 			<div id="sidebar">
-				<h1>React Router Contacts</h1>
+				<h1>React Router Tasks</h1>
 				<div>
 					<Form id="search-form" role="search">
 						<input
 							id="q"
 							className={searching ? "loading" : ""}
-							aria-label="Search contacts"
+							aria-label="Search tasks"
 							placeholder="Search"
 							type="search"
 							name="q"
@@ -74,12 +74,12 @@ const Root = () => {
 					</Form>
 				</div>
 				<nav>
-					{contacts.length ? (
+					{tasks.length ? (
 						<ul>
-							{contacts.map((contact) => (
-								<li key={contact.id}>
+							{tasks.map((task) => (
+								<li key={task.id}>
 									<NavLink
-										to={`contacts/${contact.id}`}
+										to={`tasks/${task.id}`}
 										className={({ isActive, isPending }) =>
 											isActive
 												? "active"
@@ -88,22 +88,22 @@ const Root = () => {
 													: ""
 										}
 									>
-										{contact.first || contact.last ? (
+										{task.first || task.last ? (
 											<>
-												{contact.first} {contact.last}
+												{task.first} {task.last}
 											</>
 										) : (
 											<i>No Name</i>
 										)}
 										{" "}
-										{contact.favorite && <span>★</span>}
+										{task.favorite && <span>★</span>}
 									</NavLink>
 								</li>
 							))}
 						</ul>
 					) : (
 						<p>
-							<i>No contacts</i>
+							<i>No tasks</i>
 						</p>
 					)}
 				</nav>

@@ -10,11 +10,11 @@ import Root, {
 	action as rootAction
 } from './routes/root';
 import ErrorPage from './error-page';
-import Contact, {
-	loader as contactLoader,
-	action as contactAction,
-} from './routes/contact';
-import EditContact, {
+import Task, {
+	loader as taskLoader,
+	action as taskAction,
+} from './routes/task';
+import EditTask, {
 	action as editAction
 } from './routes/edit';
 import { action as destroyAction } from './routes/destroy';
@@ -50,19 +50,19 @@ const router = createBrowserRouter([
 				children: [
 					{ index: true, element: <Index /> },
 					{
-						path: "contacts/:contactId",
-						element: <Contact />,
-						loader: contactLoader,
-						action: contactAction,
+						path: "tasks/:taskId",
+						element: <Task />,
+						loader: taskLoader,
+						action: taskAction,
 					},
 					{
-						path: "/contacts/:contactId/edit",
-						element: <EditContact />,
-						loader: contactLoader,
+						path: "/tasks/:taskId/edit",
+						element: <EditTask />,
+						loader: taskLoader,
 						action: editAction
 					},
 					{
-						path: "contacts/:contactId/destroy",
+						path: "tasks/:taskId/destroy",
 						action: destroyAction,
 						errorElement: <div>Oops! There was an error.</div>,
 					}
