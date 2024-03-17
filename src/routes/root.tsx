@@ -88,15 +88,15 @@ const Root = () => {
 													: ""
 										}
 									>
-										{task.first || task.last ? (
+										{task.name ? (
 											<>
-												{task.first} {task.last}
+												{task.name}
 											</>
 										) : (
 											<i>No Name</i>
 										)}
 										{" "}
-										{task.favorite && <span>★</span>}
+										{/* {task.favorite && <span>★</span>} */}
 									</NavLink>
 								</li>
 							))}

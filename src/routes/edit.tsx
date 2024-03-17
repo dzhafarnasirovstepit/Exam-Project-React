@@ -9,8 +9,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
 	const lastName = formData.get("last"); */
 	const updates = Object.fromEntries(formData);
 
-	updates.first;
-	updates.last;
+	updates.name;
 
 	await updateTask(params.taskId, updates);
 
@@ -29,8 +28,8 @@ const EditTask = () => {
 					placeholder="Enter task name..."
 					aria-label="Task name"
 					type="text"
-					name="first"
-					defaultValue={task.first}
+					name="name"
+					defaultValue={task.name}
 				/>
 			</p>
 

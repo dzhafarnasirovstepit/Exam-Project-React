@@ -8,7 +8,7 @@ import { getTask, updateTask } from "../tasks";
 export async function action({ request, params }: ActionFunctionArgs<any>) {
 	let formData = await request.formData();
 	return updateTask(params.taskId, {
-		favorite: formData.get("favorite") === "true",
+		isDone: formData.get("isDone") === "true",
 	});
 }
 
@@ -31,15 +31,15 @@ const Task = () => {
 
 			<div>
 				<h1>
-					{task?.first || task?.last ? (
+					{task?.name ? (
 						<>
-							{task?.first} {task?.last}
+							{task?.name}
 						</>
 					) : (
 						<i>No Name</i>
 					)}
 					{" "}
-					<Favorite task={task} />
+					<IsDone task={task} />
 				</h1>
 
 				{task?.description && <p>{task?.description}</p>}
@@ -71,32 +71,42 @@ const Task = () => {
 
 export default Task;
 
-type FavoriteProps = {
+type IsDoneProps = {
 	task: Nullable<TaskType>
 }
 
-const Favorite = ({ task }: FavoriteProps) => {
+const IsDone = ({ task }: IsDoneProps) => {
 	const fetcher = useFetcher();
 	// yes, this is a `let` for later
-	let favorite = task?.favorite;
+	let isDone = task?.isDone;
 
 	if (fetcher.formData) {
-		favorite = fetcher.formData.get("favorite") === "true";
+		isDone = fetcher.formData.get("isDone") === "true";
+	}
+
+	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const form = e.currentTarget.closest('form');
+		fetcher.submit(form);
 	}
 
 	return (
 		<fetcher.Form method="post">
-			<button
-				name="favorite"
-				value={favorite ? "false" : "true"}
+			<input
+				type="checkbox"
+				name="isDone"
+				value={isDone ? "false" : "true"}
+				defaultChecked={isDone ? true : false}
+				onInput={handleInput}
 				aria-label={
-					favorite
-						? "Remove from favorites"
-						: "Add to favorites"
+					isDone
+						? "Remove from isDones"
+						: "Add to isDones"
 				}
 			>
-				{favorite ? "★" : "☆"}
-			</button>
+			</input>
+			<label htmlFor="isDone">Status: {isDone ? "Done" : "Undone"}</label>
+
 		</fetcher.Form >
 	);
 }
+

@@ -1,12 +1,9 @@
 type TaskType = {
 	id?: string,
 	createdAt?: number,
-	first?: string,
-	last?: string,
-	avatar?: string,
-	twitter?: string,
+	name?: string,
 	description?: string,
-	favorite?: boolean,
+	isDone?: boolean,
 }
 
 export default TaskType;
