@@ -78,9 +78,9 @@ const Root = () => {
 										case "all":
 											return task;
 										case "done":
-											return task.isDone==true? task: undefined;
+											return task.isDone == true ? task : undefined;
 										case "undone":
-											return task.isDone==false? task: undefined;
+											return task.isDone == false ? task : undefined;
 									}
 								})
 
@@ -106,6 +106,27 @@ const Root = () => {
 											{" "}
 											{task.isDone ? <span>Done</span> : <span>Undone</span>}
 										</NavLink>
+
+										<div className="button-container">
+											<Form action={`tasks/${task.id}/edit`}>
+												<button type="submit">Edit</button>
+											</Form>
+											<Form
+												method="post"
+												action={`tasks/${task.id}/destroy`}
+												onSubmit={(event) => {
+													if (
+														!window.confirm(
+															"Please confirm you want to delete this record."
+														)
+													) {
+														event.preventDefault();
+													}
+												}}
+											>
+												<button type="submit">Delete</button>
+											</Form>
+										</div>
 									</li>
 								))}
 						</ul>
