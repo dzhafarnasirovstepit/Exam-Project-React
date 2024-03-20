@@ -13,7 +13,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
 
 	await updateTask(params.taskId, updates);
 
-	return redirect(`/tasks/${params.taskId}`);
+	return redirect(`/${params.taskId}`);
 }
 
 const EditTask = () => {

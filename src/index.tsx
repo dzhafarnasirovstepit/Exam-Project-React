@@ -50,19 +50,19 @@ const router = createBrowserRouter([
 				children: [
 					{ index: true, element: <Index /> },
 					{
-						path: "tasks/:taskId",
+						path: "/:taskId",
 						element: <Task />,
 						loader: taskLoader,
 						action: taskAction,
 					},
 					{
-						path: "/tasks/:taskId/edit",
+						path: "/:taskId/edit",
 						element: <EditTask />,
 						loader: taskLoader,
 						action: editAction
 					},
 					{
-						path: "tasks/:taskId/destroy",
+						path: "/:taskId/destroy",
 						action: destroyAction,
 						errorElement: <div>Oops! There was an error.</div>,
 					}

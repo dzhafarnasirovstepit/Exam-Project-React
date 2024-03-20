@@ -46937,17 +46937,17 @@ var router = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.createBrowserRoute
       index: true,
       element: /*#__PURE__*/React.createElement(Index, null)
     }, {
-      path: "/:taskId",
+      path: "tasks/:taskId",
       element: /*#__PURE__*/React.createElement(_routes_task__WEBPACK_IMPORTED_MODULE_5__["default"], null),
       loader: _routes_task__WEBPACK_IMPORTED_MODULE_5__.loader,
       action: _routes_task__WEBPACK_IMPORTED_MODULE_5__.action
     }, {
-      path: "/:taskId/edit",
+      path: "/tasks/:taskId/edit",
       element: /*#__PURE__*/React.createElement(_routes_edit__WEBPACK_IMPORTED_MODULE_6__["default"], null),
       loader: _routes_task__WEBPACK_IMPORTED_MODULE_5__.loader,
       action: _routes_edit__WEBPACK_IMPORTED_MODULE_6__.action
     }, {
-      path: ":taskId/destroy",
+      path: "tasks/:taskId/destroy",
       action: _routes_destroy__WEBPACK_IMPORTED_MODULE_7__.action,
       errorElement: /*#__PURE__*/React.createElement("div", null, "Oops! There was an error.")
     }]

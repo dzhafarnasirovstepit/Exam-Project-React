@@ -6,7 +6,7 @@ import { useState } from "react";
 export async function action(): Promise<Response> {
 	const task = await createTask();
 
-	return redirect(`/tasks/${task.id}/edit`);
+	return redirect(`/${task.id}/edit`);
 }
 
 type loaderProps = {
@@ -47,11 +47,11 @@ const Root = () => {
 						<button onClick={() => {
 							setFiltertype("done");
 						}}>Done tasks</button>
-						
+
 						<button onClick={() => {
 							setFiltertype("undone");
 						}}>Undone tasks</button>
-						
+
 						<button onClick={() => {
 							setFiltertype("all");
 						}}>All tasks</button>
@@ -72,7 +72,7 @@ const Root = () => {
 				<nav>
 					{tasks.length ? (
 						<ul>
-					{tasks
+							{tasks
 								.filter((task) => {
 									switch (filterType) {
 										case "all":
@@ -86,7 +86,7 @@ const Root = () => {
 
 								.map((task) => (
 									<li key={task.id}>
-										<NavLink to={`tasks/${task.id}`}
+										<NavLink to={`/${task.id}`}
 											className={({ isActive, isPending }) =>
 												isActive
 													? "active"
@@ -108,12 +108,12 @@ const Root = () => {
 										</NavLink>
 
 										<div className="button-container">
-											<Form action={`tasks/${task.id}/edit`}>
+											<Form action={`/${task.id}/edit`}>
 												<button type="submit">Edit</button>
 											</Form>
 											<Form
 												method="post"
-												action={`tasks/${task.id}/destroy`}
+												action={`/${task.id}/destroy`}
 												onSubmit={(event) => {
 													if (
 														!window.confirm(
