@@ -15,17 +15,17 @@ type loaderProps = {
 	}
 }
 
-export async function loader({ request }: loaderProps): Promise<{ tasks: TaskType[], q: string }> {
+export async function loader({ request }: loaderProps): Promise<{ tasks: TaskType[] }> {
 	const url = new URL(request.url);
 	const q = url.searchParams.get("q");
 	const tasks = await getTasks(q!);
 
-	return { tasks, q: q! };
+	return { tasks };
 }
 
 const Root = () => {
 	const [filterType, setFiltertype] = useState('all');
-	const { tasks } = useLoaderData() as { tasks: TaskType[], q: string };
+	const { tasks } = useLoaderData() as { tasks: TaskType[] };
 	const navigation = useNavigation();
 
 	const searching =
@@ -81,6 +81,8 @@ const Root = () => {
 											return task.isDone == true ? task : undefined;
 										case "undone":
 											return task.isDone == false ? task : undefined;
+										default:
+											return;
 									}
 								})
 
