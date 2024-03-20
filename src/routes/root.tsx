@@ -1,7 +1,7 @@
-import { Form, Link, Outlet, useLoaderData, redirect, NavLink, useNavigation, useSubmit, } from "react-router-dom";
+import { Form, Outlet, useLoaderData, redirect, NavLink, useNavigation } from "react-router-dom";
 import { getTasks, createTask } from "../tasks";
 import TaskType from "src/types/Task";
-import { useEffect } from "react";
+import { useState } from "react";
 
 export async function action(): Promise<Response> {
 	const task = await createTask();
@@ -24,9 +24,9 @@ export async function loader({ request }: loaderProps): Promise<{ tasks: TaskTyp
 }
 
 const Root = () => {
-	const { tasks, q } = useLoaderData() as { tasks: TaskType[], q: string };
+	const [filterType, setFiltertype] = useState('all');
+	const { tasks } = useLoaderData() as { tasks: TaskType[], q: string };
 	const navigation = useNavigation();
-	const submit = useSubmit();
 
 	const searching =
 		navigation.location &&
@@ -34,9 +34,9 @@ const Root = () => {
 			"q"
 		);
 
-	useEffect(() => {
+	/* useEffect(() => {
 		(document.getElementById("q") as HTMLInputElement)!.value = q;
-	}, [q]);
+	}, [q]); */
 
 	return (
 		<>
@@ -44,21 +44,17 @@ const Root = () => {
 				<h1>React Router Tasks</h1>
 				<div>
 					<Form id="search-form" role="search">
-						<input
-							id="q"
-							className={searching ? "loading" : ""}
-							aria-label="Search tasks"
-							placeholder="Search"
-							type="search"
-							name="q"
-							defaultValue={q}
-							onChange={(event) => {
-								const isFirstSearch = q == null;
-								submit(event.currentTarget.form, {
-									replace: !isFirstSearch,
-								});
-							}}
-						/>
+						<button onClick={() => {
+							setFiltertype("done");
+						}}>Done tasks</button>
+						
+						<button onClick={() => {
+							setFiltertype("undone");
+						}}>Undone tasks</button>
+						
+						<button onClick={() => {
+							setFiltertype("all");
+						}}>All tasks</button>
 						<div
 							id="search-spinner"
 							aria-hidden
@@ -76,30 +72,42 @@ const Root = () => {
 				<nav>
 					{tasks.length ? (
 						<ul>
-							{tasks.map((task) => (
-								<li key={task.id}>
-									<NavLink
-										to={`tasks/${task.id}`}
-										className={({ isActive, isPending }) =>
-											isActive
-												? "active"
-												: isPending
-													? "pending"
-													: ""
-										}
-									>
-										{task.name ? (
-											<>
-												{task.name}
-											</>
-										) : (
-											<i>No Name</i>
-										)}
-										{" "}
-										{/* {task.favorite && <span>★</span>} */}
-									</NavLink>
-								</li>
-							))}
+					{tasks
+								.filter((task) => {
+									switch (filterType) {
+										case "all":
+											return task;
+										case "done":
+											return task.isDone==true? task: undefined;
+										case "undone":
+											return task.isDone==false? task: undefined;
+									}
+								})
+
+								.map((task) => (
+									<li key={task.id}>
+										<NavLink to={`tasks/${task.id}`}
+											className={({ isActive, isPending }) =>
+												isActive
+													? "active"
+													: isPending
+														? "pending"
+														: ""
+											}
+										>
+
+											{task.name ? (
+												<>
+													{task.name}
+												</>
+											) : (
+												<i>No Name</i>
+											)}
+											{" "}
+											{task.isDone ? <span>Done</span> : <span>Undone</span>}
+										</NavLink>
+									</li>
+								))}
 						</ul>
 					) : (
 						<p>
