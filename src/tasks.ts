@@ -37,7 +37,7 @@ export const updateTask: CaseReducer<TaskType[], PayloadAction<TaskType>> = (sta
 
 	if (!task) throw new Error("No task found for", { cause: action.payload.id });
 
-	delete action.payload.id
+	delete action.payload.id;
 	console.log(task,action.payload);
 
 	Object.assign(task, action.payload);

@@ -1,33 +1,20 @@
-import { Form, Outlet, useLoaderData, redirect, NavLink, useNavigation } from "react-router-dom";
+import { Form, Outlet, redirect, NavLink, useNavigation } from "react-router-dom";
 import { createTask, updateTask } from "../redux/slices/tasksSlice";
-import TaskType from "src/types/Task";
 import { useState } from "react";
-import Nullable from "src/types/Nullable";
 import { useDispatch } from "react-redux";
-import store, { RootState, useTypedSelector } from "../store";
+import store, { useTypedSelector } from "../store";
 
 export function action() {
 	store.dispatch(createTask());
-	const tasks = useTypedSelector((state: RootState) => state.tasksReducer);
+	const tasks = store.getState().tasksReducer;
 	const task = tasks[tasks.length - 1];
 	return redirect(`/${task!.id}/edit`);
 }
 
-export function loader(): { tasks: TaskType[] } {
-	const tasks = store.getState().tasksReducer;
-	return { tasks };
-}
-
 const Root = () => {
 	const [filterType, setFiltertype] = useState('all');
-	const { tasks } = useLoaderData() as { tasks: TaskType[] };
+	const tasks=useTypedSelector((state)=>state.tasksReducer);
 	const navigation = useNavigation();
-
-	const searching =
-		navigation.location &&
-		new URLSearchParams(navigation.location.search).has(
-			"q"
-		);
 
 	return (
 		<>
@@ -46,11 +33,6 @@ const Root = () => {
 						<button onClick={() => {
 							setFiltertype("all");
 						}}>All tasks</button>
-						<div
-							id="search-spinner"
-							aria-hidden
-							hidden={!searching}
-						/>
 						<div
 							className="sr-only"
 							aria-live="polite"
@@ -119,7 +101,7 @@ const Root = () => {
 											>
 												<button type="submit">Delete</button>
 											</Form>
-											<IsDone task={task} />
+											<IsDone id={task.id ?? ''} />
 										</div>
 									</li>
 								))}
@@ -146,11 +128,12 @@ const Root = () => {
 export default Root;
 
 type IsDoneProps = {
-	task: Nullable<TaskType>
+	id: string;
 }
 
-const IsDone = ({ task }: IsDoneProps) => {
-	// yes, this is a `let` for later
+const IsDone = ({ id }: IsDoneProps) => {
+	const tasks=useTypedSelector((state)=>state.tasksReducer);
+	const task = tasks.find(task=>task.id===id);
 	const dispatch = useDispatch();
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -164,7 +147,7 @@ const IsDone = ({ task }: IsDoneProps) => {
 	}
 
 	return (
-		<>
+		<Form action={``}>
 			<input
 				id={task?.id}
 				type="checkbox"
@@ -179,7 +162,8 @@ const IsDone = ({ task }: IsDoneProps) => {
 				}
 			>
 			</input>
-			<label htmlFor="isDone">Status: {task?.isDone ? "Done" : "Undone"}</label>
-		</>
+			<label id={task?.id + '-status-label'} htmlFor="isDone">Status: {task?.isDone ? "Done" : "Undone"}</label>
+			</Form>
+
 	);
 }
