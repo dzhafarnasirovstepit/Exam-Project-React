@@ -1,4 +1,4 @@
-import { Form, LoaderFunctionArgs, useLoaderData, useFetcher, ActionFunctionArgs, } from "react-router-dom";
+import { Form, LoaderFunctionArgs, useLoaderData, ActionFunctionArgs, } from "react-router-dom";
 import TaskType from "src/types/Task";
 import Nullable from "src/types/Nullable";
 import { getTask, updateTask } from "../tasks";
@@ -39,7 +39,7 @@ const Task = () => {
 						<i>No Name</i>
 					)}
 					{" "}
-					<IsDone task={task} />
+
 				</h1>
 
 				{task?.description && <p>{task?.description}</p>}
@@ -70,42 +70,3 @@ const Task = () => {
 }
 
 export default Task;
-
-type IsDoneProps = {
-	task: Nullable<TaskType>
-}
-
-const IsDone = ({ task }: IsDoneProps) => {
-	const fetcher = useFetcher();
-	// yes, this is a `let` for later
-	let isDone = task?.isDone;
-
-	if (fetcher.formData) {
-		isDone = fetcher.formData.get("isDone") === "true";
-	}
-
-	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const form = e.currentTarget.closest('form');
-		fetcher.submit(form);
-	}
-
-	return (
-		<fetcher.Form method="post">
-			<input
-				type="checkbox"
-				name="isDone"
-				value={isDone ? "false" : "true"}
-				defaultChecked={isDone ? true : false}
-				onInput={handleInput}
-				aria-label={
-					isDone
-						? "Remove from isDones"
-						: "Add to isDones"
-				}
-			>
-			</input>
-			<label htmlFor="isDone">Status: {isDone ? "Done" : "Undone"}</label>
-
-		</fetcher.Form >
-	);
-}

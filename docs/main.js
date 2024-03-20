@@ -4463,7 +4463,7 @@ function _action() {
           _context.next = 8;
           return (0,_tasks__WEBPACK_IMPORTED_MODULE_2__.updateTask)(params.taskId, updates);
         case 8:
-          return _context.abrupt("return", (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.redirect)("/tasks/".concat(params.taskId)));
+          return _context.abrupt("return", (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.redirect)("/".concat(params.taskId)));
         case 9:
         case "end":
           return _context.stop();
@@ -4532,21 +4532,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function action() {
+function action(_x) {
   return _action.apply(this, arguments);
 }
 function _action() {
-  _action = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee() {
-    var task;
+  _action = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(_ref) {
+    var request, params, task;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
+          request = _ref.request, params = _ref.params;
+          _context.next = 3;
           return (0,_tasks__WEBPACK_IMPORTED_MODULE_3__.createTask)();
-        case 2:
+        case 3:
           task = _context.sent;
-          return _context.abrupt("return", (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.redirect)("/tasks/".concat(task.id, "/edit")));
-        case 4:
+          return _context.abrupt("return", (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.redirect)("/".concat(task.id, "/edit")));
+        case 5:
         case "end":
           return _context.stop();
       }
@@ -4554,16 +4555,16 @@ function _action() {
   }));
   return _action.apply(this, arguments);
 }
-function loader(_x) {
+function loader(_x2) {
   return _loader.apply(this, arguments);
 }
 function _loader() {
-  _loader = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(_ref) {
+  _loader = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(_ref2) {
     var request, url, q, tasks;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
-          request = _ref.request;
+          request = _ref2.request;
           url = new URL(request.url);
           q = url.searchParams.get("q");
           _context2.next = 5;
@@ -4571,8 +4572,7 @@ function _loader() {
         case 5:
           tasks = _context2.sent;
           return _context2.abrupt("return", {
-            tasks: tasks,
-            q: q
+            tasks: tasks
           });
         case 7:
         case "end":
@@ -4587,8 +4587,8 @@ var Root = function Root() {
     _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
     filterType = _useState2[0],
     setFiltertype = _useState2[1];
-  var _ref2 = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useLoaderData)(),
-    tasks = _ref2.tasks;
+  var _ref3 = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useLoaderData)(),
+    tasks = _ref3.tasks;
   var navigation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigation)();
   var searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
 
@@ -4632,26 +4632,28 @@ var Root = function Root() {
         return task.isDone == true ? task : undefined;
       case "undone":
         return task.isDone == false ? task : undefined;
+      default:
+        return;
     }
   }).map(function (task) {
     return /*#__PURE__*/React.createElement("li", {
       key: task.id
     }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink, {
-      to: "tasks/".concat(task.id),
-      className: function className(_ref3) {
-        var isActive = _ref3.isActive,
-          isPending = _ref3.isPending;
+      to: "/".concat(task.id),
+      className: function className(_ref4) {
+        var isActive = _ref4.isActive,
+          isPending = _ref4.isPending;
         return isActive ? "active" : isPending ? "pending" : "";
       }
     }, task.name ? /*#__PURE__*/React.createElement(React.Fragment, null, task.name) : /*#__PURE__*/React.createElement("i", null, "No Name"), " ", task.isDone ? /*#__PURE__*/React.createElement("span", null, "Done") : /*#__PURE__*/React.createElement("span", null, "Undone")), /*#__PURE__*/React.createElement("div", {
       className: "button-container"
     }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Form, {
-      action: "tasks/".concat(task.id, "/edit")
+      action: "/".concat(task.id, "/edit")
     }, /*#__PURE__*/React.createElement("button", {
       type: "submit"
     }, "Edit")), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Form, {
       method: "post",
-      action: "tasks/".concat(task.id, "/destroy"),
+      action: "/".concat(task.id, "/destroy"),
       onSubmit: function onSubmit(event) {
         if (!window.confirm("Please confirm you want to delete this record.")) {
           event.preventDefault();
@@ -4659,13 +4661,40 @@ var Root = function Root() {
       }
     }, /*#__PURE__*/React.createElement("button", {
       type: "submit"
-    }, "Delete"))));
+    }, "Delete")), /*#__PURE__*/React.createElement(IsDone, {
+      task: task
+    })));
   })) : /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("i", null, "No tasks")))), /*#__PURE__*/React.createElement("div", {
     id: "detail",
     className: navigation.state === "loading" ? "loading" : ""
   }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Outlet, null)));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Root);
+var IsDone = function IsDone(_ref5) {
+  var task = _ref5.task;
+  var fetcher = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useFetcher)();
+  // yes, this is a `let` for later
+  var isDone = task === null || task === void 0 ? void 0 : task.isDone;
+  if (fetcher.formData) {
+    isDone = fetcher.formData.get("isDone") === "true";
+  }
+  var handleInput = function handleInput(e) {
+    var form = e.currentTarget.closest('form');
+    fetcher.submit(form);
+  };
+  return /*#__PURE__*/React.createElement(fetcher.Form, {
+    method: "post"
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "checkbox",
+    name: "isDone",
+    value: isDone ? "false" : "true",
+    defaultChecked: isDone ? true : false,
+    onInput: handleInput,
+    "aria-label": isDone ? "Remove from isDones" : "Add to isDones"
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "isDone"
+  }, "Status: ", isDone ? "Done" : "Undone"));
+};
 
 /***/ }),
 
@@ -4756,9 +4785,7 @@ var Task = function Task() {
     task = _ref3.task;
   return /*#__PURE__*/React.createElement("div", {
     id: "task"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, task !== null && task !== void 0 && task.name ? /*#__PURE__*/React.createElement(React.Fragment, null, task === null || task === void 0 ? void 0 : task.name) : /*#__PURE__*/React.createElement("i", null, "No Name"), " ", /*#__PURE__*/React.createElement(IsDone, {
-    task: task
-  })), (task === null || task === void 0 ? void 0 : task.description) && /*#__PURE__*/React.createElement("p", null, task === null || task === void 0 ? void 0 : task.description), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Form, {
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, task !== null && task !== void 0 && task.name ? /*#__PURE__*/React.createElement(React.Fragment, null, task === null || task === void 0 ? void 0 : task.name) : /*#__PURE__*/React.createElement("i", null, "No Name"), " "), (task === null || task === void 0 ? void 0 : task.description) && /*#__PURE__*/React.createElement("p", null, task === null || task === void 0 ? void 0 : task.description), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Form, {
     action: "edit"
   }, /*#__PURE__*/React.createElement("button", {
     type: "submit"
@@ -4775,31 +4802,6 @@ var Task = function Task() {
   }, "Delete")))));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Task);
-var IsDone = function IsDone(_ref4) {
-  var task = _ref4.task;
-  var fetcher = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useFetcher)();
-  // yes, this is a `let` for later
-  var isDone = task === null || task === void 0 ? void 0 : task.isDone;
-  if (fetcher.formData) {
-    isDone = fetcher.formData.get("isDone") === "true";
-  }
-  var handleInput = function handleInput(e) {
-    var form = e.currentTarget.closest('form');
-    fetcher.submit(form);
-  };
-  return /*#__PURE__*/React.createElement(fetcher.Form, {
-    method: "post"
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "checkbox",
-    name: "isDone",
-    value: isDone ? "false" : "true",
-    defaultChecked: isDone ? true : false,
-    onInput: handleInput,
-    "aria-label": isDone ? "Remove from isDones" : "Add to isDones"
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "isDone"
-  }, "Status: ", isDone ? "Done" : "Undone"));
-};
 
 /***/ }),
 
@@ -4877,7 +4879,8 @@ function _createTask() {
           id = Math.random().toString(36).substring(2, 9);
           task = {
             id: id,
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            isDone: false
           };
           _context2.next = 6;
           return getTasks();
@@ -46937,17 +46940,17 @@ var router = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.createBrowserRoute
       index: true,
       element: /*#__PURE__*/React.createElement(Index, null)
     }, {
-      path: "tasks/:taskId",
+      path: "/:taskId",
       element: /*#__PURE__*/React.createElement(_routes_task__WEBPACK_IMPORTED_MODULE_5__["default"], null),
       loader: _routes_task__WEBPACK_IMPORTED_MODULE_5__.loader,
       action: _routes_task__WEBPACK_IMPORTED_MODULE_5__.action
     }, {
-      path: "/tasks/:taskId/edit",
+      path: "/:taskId/edit",
       element: /*#__PURE__*/React.createElement(_routes_edit__WEBPACK_IMPORTED_MODULE_6__["default"], null),
       loader: _routes_task__WEBPACK_IMPORTED_MODULE_5__.loader,
       action: _routes_edit__WEBPACK_IMPORTED_MODULE_6__.action
     }, {
-      path: "tasks/:taskId/destroy",
+      path: "/:taskId/destroy",
       action: _routes_destroy__WEBPACK_IMPORTED_MODULE_7__.action,
       errorElement: /*#__PURE__*/React.createElement("div", null, "Oops! There was an error.")
     }]

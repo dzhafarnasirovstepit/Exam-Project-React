@@ -1,9 +1,10 @@
-import { Form, Outlet, useLoaderData, redirect, NavLink, useNavigation } from "react-router-dom";
+import { Form, Outlet, useLoaderData, redirect, NavLink, useNavigation, useFetcher, ActionFunctionArgs } from "react-router-dom";
 import { getTasks, createTask } from "../tasks";
 import TaskType from "src/types/Task";
 import { useState } from "react";
+import Nullable from "src/types/Nullable";
 
-export async function action(): Promise<Response> {
+export async function action({ }: ActionFunctionArgs<any>): Promise<Response> {
 	const task = await createTask();
 
 	return redirect(`/${task.id}/edit`);
@@ -128,6 +129,7 @@ const Root = () => {
 											>
 												<button type="submit">Delete</button>
 											</Form>
+											<IsDone task={task} />
 										</div>
 									</li>
 								))}
@@ -152,3 +154,42 @@ const Root = () => {
 }
 
 export default Root;
+
+type IsDoneProps = {
+	task: Nullable<TaskType>
+}
+
+const IsDone = ({ task }: IsDoneProps) => {
+	const fetcher = useFetcher();
+	// yes, this is a `let` for later
+	let isDone = task?.isDone;
+
+	if (fetcher.formData) {
+		isDone = fetcher.formData.get("isDone") === "true";
+	}
+
+	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const form = e.currentTarget.closest('form');
+		fetcher.submit(form);
+	}
+
+	return (
+		<fetcher.Form method="post">
+			<input
+				type="checkbox"
+				name="isDone"
+				value={isDone ? "false" : "true"}
+				defaultChecked={isDone ? true : false}
+				onInput={handleInput}
+				aria-label={
+					isDone
+						? "Remove from isDones"
+						: "Add to isDones"
+				}
+			>
+			</input>
+			<label htmlFor="isDone">Status: {isDone ? "Done" : "Undone"}</label>
+
+		</fetcher.Form >
+	);
+}
