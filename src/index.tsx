@@ -19,6 +19,9 @@ import EditTask, {
 } from './routes/edit';
 import { action as destroyAction } from './routes/destroy';
 
+import { Provider } from 'react-redux';
+import store from './store';
+
 const rootContainer = document.querySelector('#root');
 
 if (rootContainer === null) throw new Error('Can\'t find root container');
@@ -76,6 +79,8 @@ const root = createRoot(rootContainer);
 
 root.render(
 	<StrictMode>
-		<RouterProvider router={router} />
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
 	</StrictMode>
 )

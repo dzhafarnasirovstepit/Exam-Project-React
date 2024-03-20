@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from './redux/slices/counterSlice';
+import tasksReducer from './redux/slices/tasksSlice';
 import { useDispatch, useSelector } from "react-redux";
 
 const store = configureStore({
 	reducer: {
-		counterReducer
+		tasksReducer
 	}
 });
 

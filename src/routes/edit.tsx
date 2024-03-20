@@ -1,7 +1,8 @@
 import { Form, useLoaderData, redirect, ActionFunctionArgs, useNavigate, } from "react-router-dom";
 import TaskType from "src/types/Task";
 
-import { updateTask } from "../tasks";
+import { updateTask } from "../redux/slices/tasksSlice";
+import store from "../store";
 
 export async function action({ request, params }: ActionFunctionArgs) {
 	const formData = await request.formData();
@@ -11,8 +12,8 @@ export async function action({ request, params }: ActionFunctionArgs) {
 
 	updates.name;
 
-	await updateTask(params.taskId, updates);
-
+	store.dispatch(updateTask({id: params.taskId, ...updates}));
+	
 	return redirect(`/${params.taskId}`);
 }
 

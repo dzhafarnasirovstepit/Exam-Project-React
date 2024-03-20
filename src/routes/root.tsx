@@ -1,26 +1,20 @@
-import { Form, Outlet, useLoaderData, redirect, NavLink, useNavigation, useFetcher, ActionFunctionArgs } from "react-router-dom";
-import { getTasks, createTask } from "../tasks";
+import { Form, Outlet, useLoaderData, redirect, NavLink, useNavigation } from "react-router-dom";
+import { createTask, updateTask } from "../redux/slices/tasksSlice";
 import TaskType from "src/types/Task";
 import { useState } from "react";
 import Nullable from "src/types/Nullable";
+import { useDispatch } from "react-redux";
+import store, { RootState, useTypedSelector } from "../store";
 
-export async function action({ }: ActionFunctionArgs<any>): Promise<Response> {
-	const task = await createTask();
-
-	return redirect(`/${task.id}/edit`);
+export function action() {
+	store.dispatch(createTask());
+	const tasks = useTypedSelector((state: RootState) => state.tasksReducer);
+	const task = tasks[tasks.length - 1];
+	return redirect(`/${task!.id}/edit`);
 }
 
-type loaderProps = {
-	request: {
-		url: string
-	}
-}
-
-export async function loader({ request }: loaderProps): Promise<{ tasks: TaskType[] }> {
-	const url = new URL(request.url);
-	const q = url.searchParams.get("q");
-	const tasks = await getTasks(q!);
-
+export function loader(): { tasks: TaskType[] } {
+	const tasks = store.getState().tasksReducer;
 	return { tasks };
 }
 
@@ -34,10 +28,6 @@ const Root = () => {
 		new URLSearchParams(navigation.location.search).has(
 			"q"
 		);
-
-	/* useEffect(() => {
-		(document.getElementById("q") as HTMLInputElement)!.value = q;
-	}, [q]); */
 
 	return (
 		<>
@@ -160,36 +150,36 @@ type IsDoneProps = {
 }
 
 const IsDone = ({ task }: IsDoneProps) => {
-	const fetcher = useFetcher();
 	// yes, this is a `let` for later
-	let isDone = task?.isDone;
-
-	if (fetcher.formData) {
-		isDone = fetcher.formData.get("isDone") === "true";
-	}
+	const dispatch = useDispatch();
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const form = e.currentTarget.closest('form');
-		fetcher.submit(form);
+		const input = e.currentTarget;
+
+
+		dispatch(updateTask({
+			id: input.id,
+			isDone: !task!.isDone,
+		}));
 	}
 
 	return (
-		<fetcher.Form method="post">
+		<>
 			<input
+				id={task?.id}
 				type="checkbox"
 				name="isDone"
-				value={isDone ? "false" : "true"}
-				defaultChecked={isDone ? true : false}
+				value={task?.isDone ? "true" : "false"}
+				defaultChecked={task?.isDone ? true : false}
 				onInput={handleInput}
 				aria-label={
-					isDone
+					task?.isDone
 						? "Remove from isDones"
 						: "Add to isDones"
 				}
 			>
 			</input>
-			<label htmlFor="isDone">Status: {isDone ? "Done" : "Undone"}</label>
-
-		</fetcher.Form >
+			<label htmlFor="isDone">Status: {task?.isDone ? "Done" : "Undone"}</label>
+		</>
 	);
 }
