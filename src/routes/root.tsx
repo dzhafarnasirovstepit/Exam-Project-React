@@ -13,33 +13,32 @@ export function action() {
 
 const Root = () => {
 	const [filterType, setFiltertype] = useState('all');
-	const tasks=useTypedSelector((state)=>state.tasksReducer);
+	const tasks = useTypedSelector((state) => state.tasksReducer);
 	const navigation = useNavigation();
 
 	return (
 		<>
 			<div id="sidebar">
 				<h1>React Router Tasks</h1>
-				<div>
+				<div className="form-wrapper">
 					<Form id="search-form" role="search">
-						<button onClick={() => {
-							setFiltertype("done");
-						}}>Done tasks</button>
 
-						<button onClick={() => {
-							setFiltertype("undone");
-						}}>Undone tasks</button>
 
-						<button onClick={() => {
-							setFiltertype("all");
-						}}>All tasks</button>
+							<div className="filter-buttons">
+							<button className={filterType === 'all' ? 'active' : ''} onClick={() => setFiltertype('all')}>All tasks</button>
+      <button className={filterType === 'done' ? 'active' : ''} onClick={() => setFiltertype('done')}>Done tasks</button>
+      <button className={filterType === 'undone' ? 'active' : ''} onClick={() => setFiltertype('undone')}>Undone tasks</button>
+							</div>
+
 						<div
 							className="sr-only"
 							aria-live="polite"
 						></div>
 					</Form>
 					<Form method="post">
-						<button type="submit">New</button>
+						<div className="new-task-button">
+							<button type="submit">Add new task</button>
+						</div>
 					</Form>
 				</div>
 				<nav>
@@ -132,8 +131,8 @@ type IsDoneProps = {
 }
 
 const IsDone = ({ id }: IsDoneProps) => {
-	const tasks=useTypedSelector((state)=>state.tasksReducer);
-	const task = tasks.find(task=>task.id===id);
+	const tasks = useTypedSelector((state) => state.tasksReducer);
+	const task = tasks.find(task => task.id === id);
 	const dispatch = useDispatch();
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -162,8 +161,8 @@ const IsDone = ({ id }: IsDoneProps) => {
 				}
 			>
 			</input>
-			<label id={task?.id + '-status-label'} htmlFor="isDone">Status: {task?.isDone ? "Done" : "Undone"}</label>
-			</Form>
+			<label id={task?.id + '-status-label'} htmlFor="isDone"> {/* {task?.isDone ? "Done" : "Undone"} */}</label>
+		</Form>
 
 	);
 }

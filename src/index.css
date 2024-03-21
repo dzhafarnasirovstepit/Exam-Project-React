@@ -196,7 +196,7 @@ form[action$="destroy"] button {
 
 #sidebar nav a span {
 	float: right;
-	color: #eeb004;
+	color:purple;
 }
 
 #sidebar nav a.active span {
@@ -388,5 +388,28 @@ i {
 
 .button-container{
 	display: flex;
-	gap:10px;
+	gap: 10px;
+}
+
+.filter-buttons button {
+    display: block;
+    margin-bottom: 5px; 
+	color: maroon;
+}
+
+.new-task-button button {
+    margin-left: auto;
+	color: green;
+}
+
+.form-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; 
+}
+
+.filter-buttons button.active {
+	color: white;
+    background-color: maroon;
 }
