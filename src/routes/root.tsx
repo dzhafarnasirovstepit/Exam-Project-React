@@ -22,13 +22,12 @@ const Root = () => {
 				<h1>React Router Tasks</h1>
 				<div className="form-wrapper">
 					<Form id="search-form" role="search">
-
-
-							<div className="filter-buttons">
+						<div className="filter-buttons">
+							<p><b>Filter tasks:</b></p>
 							<button className={filterType === 'all' ? 'active' : ''} onClick={() => setFiltertype('all')}>All tasks</button>
-      <button className={filterType === 'done' ? 'active' : ''} onClick={() => setFiltertype('done')}>Done tasks</button>
-      <button className={filterType === 'undone' ? 'active' : ''} onClick={() => setFiltertype('undone')}>Undone tasks</button>
-							</div>
+							<button className={filterType === 'done' ? 'active' : ''} onClick={() => setFiltertype('done')}>Done tasks</button>
+							<button className={filterType === 'undone' ? 'active' : ''} onClick={() => setFiltertype('undone')}>Undone tasks</button>
+						</div>
 
 						<div
 							className="sr-only"
@@ -166,3 +165,4 @@ const IsDone = ({ id }: IsDoneProps) => {
 
 	);
 }
+
